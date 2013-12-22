@@ -1,11 +1,26 @@
-<h1> this is the home page of the booksManiacs site </h1>
+
+<html>
+	<head>
+		<title>
+			booksManiacs
+		</title>
+		{% load staticfiles %}
+
+		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/style.css' %}" />
+
+	</head>
+	<body>
+
+		<h1> this is the home page of the booksManiacs site </h1>
 
 
-<!--if not logged in person will see this-->
-hello world !
+		<!--if not logged in person will see this-->
+		<div id="logged_out">hello world !</div>
 
 
 
 
-<!--if logged in user will see this-->
-the booksManiacs are here
+		<!--if logged in user will see this-->
+		<div id="logged_in">the booksManiacs are here</div>
+
+	</body>
