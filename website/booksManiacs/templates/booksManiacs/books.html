@@ -1,1 +1,19 @@
-here is the list of books available :
+<html>
+	<head>
+		<title>books - booksManiacs</title>
+		{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/style.css' %}">
+	</head>
+	<body>
+		{% if books_available %}
+			here is the list of books available :
+			<ul>
+			{% for book in books_available %}
+				<div><a class="booksName" href="/booksManiacs/books/{{ book.id }}/">{{ book.author }}</a>{{ book.avail_count }}</div><br />
+			{% endfor %}
+			</ul>
+		{% else %}
+			<p>No books are available.</p>
+		{% endif %}
+	</body>
+</html>

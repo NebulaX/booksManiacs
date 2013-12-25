@@ -1,4 +1,4 @@
-bookManiacs
+booksManiacs
 ============
 Instructions:
 ----------------------------
