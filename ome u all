@@ -1,0 +1,89 @@
+[1mdiff --git a/website/booksManiacs/templates/booksManiacs/books.html b/website/booksManiacs/templates/booksManiacs/books.html[m
+[1mindex 459f3e2..f71a29b 100644[m
+[1m--- a/website/booksManiacs/templates/booksManiacs/books.html[m
+[1m+++ b/website/booksManiacs/templates/booksManiacs/books.html[m
+[36m@@ -9,7 +9,9 @@[m
+ 			here is the list of books available :[m
+ 			<ul>[m
+ 			{% for book in books_available %}[m
+[31m-				<div><a class="booksName" href="/booksManiacs/books/{{ book.id }}/">{{ book.author }}</a>{{ book.avail_count }}</div><br />[m
+[32m+[m				[32m{% if book.avail_count %}[m
+[32m+[m					[32m<div><a class="booksName" href="/booksManiacs/items/{{ book.author }}/">{{ book.author }}</a>{{ book.avail_count }}</div><br />[m
+[32m+[m				[32m{% endif %}[m
+ 			{% endfor %}[m
+ 			</ul>[m
+ 		{% else %}[m
+[1mdiff --git a/website/booksManiacs/templates/booksManiacs/home.html b/website/booksManiacs/templates/booksManiacs/home.html[m
+[1mindex 3da5269..e43fa36 100644[m
+[1m--- a/website/booksManiacs/templates/booksManiacs/home.html[m
+[1m+++ b/website/booksManiacs/templates/booksManiacs/home.html[m
+[36m@@ -15,7 +15,23 @@[m
+ [m
+ [m
+ 		<!--if not logged in person will see this-->[m
+[31m-		<div id="logged_out">hello world !</div>[m
+[32m+[m		[32m<div id="logged_out">[m
+[32m+[m			[32mhello world ![m
+[32m+[m			[32m<form>[m
+[32m+[m				[32m<label>email</label><input type="input">[m
+[32m+[m				[32m<label>password</label><input type="input">[m
+[32m+[m				[32m<input type="submit">[m
+[32m+[m			[32m</form>[m
+[32m+[m			[32m<form>[m
+[32m+[m				[32m<label></label><input type="input">[m
+[32m+[m				[32m<label></label><input type="input">[m
+[32m+[m				[32m<label></label><input type="input">[m
+[32m+[m				[32m<label></label><input type="input">[m
+[32m+[m				[32m<label></label><input type="input">[m
+[32m+[m				[32m<label></label><input type="input">[m
+[32m+[m				[32m<label></label><input type="submit">[m
+[32m+[m			[32m</form>[m
+[32m+[m		[32m</div>[m
+ [m
+ [m
+ [m
+[1mdiff --git a/website/booksManiacs/urls.py b/website/booksManiacs/urls.py[m
+[1mindex 2445fd1..61f9949 100644[m
+[1m--- a/website/booksManiacs/urls.py[m
+[1m+++ b/website/booksManiacs/urls.py[m
+[36m@@ -4,5 +4,6 @@[m [mfrom booksManiacs import views[m
+ [m
+ urlpatterns = patterns('',[m
+ 	url(r'^$', views.home, name='home'),[m
+[31m-	url(r'^books/', views.books, name='books')[m
+[32m+[m	[32murl(r'^books/$', views.books, name='books'),[m
+[32m+[m	[32murl(r'^items/(?P<book_author>[\w\s]+)/$', views.items, name='items'),[m
+ )[m
+\ No newline at end of file[m
+[1mdiff --git a/website/booksManiacs/views.py b/website/booksManiacs/views.py[m
+[1mindex 3f3faa6..7754f5f 100644[m
+[1m--- a/website/booksManiacs/views.py[m
+[1m+++ b/website/booksManiacs/views.py[m
+[36m@@ -4,7 +4,7 @@[m [mfrom django.http import HttpResponse[m
+ from django.shortcuts import render[m
+ # from django.template import RequestContext, loader[m
+ [m
+[31m-from booksManiacs.models import Book[m
+[32m+[m[32mfrom booksManiacs.models import Book, Item[m
+ [m
+ def home(request):[m
+     return render(request, 'booksManiacs/home.html')[m
+[36m@@ -13,3 +13,14 @@[m [mdef books(request):[m
+ 	books_available =  Book.objects.all()                 #books with avail_count!=0[m
+ 	data = {'books_available': books_available}[m
+ 	return render(request, 'booksManiacs/books.html', data)[m
+[32m+[m
+[32m+[m[32mdef items(request, book_author):[m
+[32m+[m	[32mexist = Book.objects.filter(author=book_author).count()[m
+[32m+[m	[32mif exist:[m
+[32m+[m		[32m# return HttpResponse("<h1>It works! %s</h1>" % book_author)[m
+[32m+[m		[32mreq_items = Item.objects.filter(name=book_author)[m
+[32m+[m		[32mdata = {'req_items' : req_items, 'book_author' : book_author, 'exist' : exist}[m
+[32m+[m		[32mreturn render(request, 'booksManiacs/items.html', data)[m
+[32m+[m	[32melse:[m
+[32m+[m		[32mreturn HttpResponse("sorry there is no such book. you have reached the wrong page.")[m
+[32m+[m		[32m#404page[m
+\ No newline at end of file[m
+[1mdiff --git a/website/database/booksManiacs.sqlite3 b/website/database/booksManiacs.sqlite3[m
+[1mindex e6a8ac1..ca43486 100644[m
+Binary files a/website/database/booksManiacs.sqlite3 and b/website/database/booksManiacs.sqlite3 differ

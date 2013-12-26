@@ -9,7 +9,9 @@
 			here is the list of books available :
 			<ul>
 			{% for book in books_available %}
-				<div><a class="booksName" href="/booksManiacs/books/{{ book.id }}/">{{ book.author }}</a>{{ book.avail_count }}</div><br />
+				{% if book.avail_count %}
+					<div><a class="booksName" href="/booksManiacs/items/{{ book.author }}/">{{ book.author }}</a>{{ book.avail_count }}</div><br />
+				{% endif %}
 			{% endfor %}
 			</ul>
 		{% else %}
