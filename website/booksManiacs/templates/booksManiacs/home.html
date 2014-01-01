@@ -6,7 +6,8 @@
 		</title>
 		{% load staticfiles %}
 
-		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/style.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/style.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/books.css' %}" />
 
 	</head>
 	<body>
@@ -15,6 +16,13 @@
 
 
 		<!--if not logged in person will see this-->
+		<div id = "cover">
+			<div id = "brandcover">
+				<div id = "brandtitle"><i class ="fa fa-book"></i> booksManiacs</div>
+				<hr>
+				<p><i class="fa fa-inr"></i> Cheap books ! <i class = "fa fa-star-o"></i> Great Deals !</p>
+			</div>
+		</div>
 		<div id="logged_out">
 			hello world !
 			<form>
@@ -40,3 +48,4 @@
 		<div id="logged_in">the booksManiacs are here</div>
 
 	</body>
+</html>

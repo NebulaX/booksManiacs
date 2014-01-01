@@ -15,14 +15,14 @@ class Student_Year(models.Model):
         (FOURTH, 'Fourth'),
     )
 
-"""
+
 class Hostel(models.Model):
 	HOSTEL_CHOICES = (
 		('clb','Cautley Bhawan'),
 		('rkb','RadhaKrishnan Bhawan'),
 		('rb','Rajeev Bhawan'),
 		('rjb','Rajendra Bhawan'),
-	)"""
+	)
 
 
 class Book(models.Model):
@@ -35,21 +35,16 @@ class Book(models.Model):
 class Profile(models.Model):
 	name = models.CharField(max_length=50)
 	email = models.EmailField(max_length=254,primary_key=True)
+	password = models.CharField(max_length=32)
 	mobile_number = models.CharField(max_length=10)
 	room_number = models.CharField(max_length=10)
-	# hostel = models.CharField(max_length=3,choices=Hostel.HOSTEL_CHOICES)
+	hostel = models.CharField(max_length=3,choices=Hostel.HOSTEL_CHOICES)
 	year = models.CharField(max_length=3,choices=Student_Year.YEAR_CHOICES)
 	enrollment_number = models.CharField(max_length=8)
 	synced_facebook = models.BooleanField(default=False)
 	blocked = models.BooleanField(default=False)
-	# def __unicode__(self):
-	# 	return self.email
-
-class User(models.Model):
-	email = models.OneToOneField(Profile)
-	password = models.CharField(max_length=32)
-	# def __unicode__(self):
-	# 	return self.email
+	def __unicode__(self):
+		return self.email
 
 class Item(models.Model):
 	ITEM_STATUS = (
@@ -63,5 +58,6 @@ class Item(models.Model):
 	buy_request = models.CharField(max_length=1,choices=ITEM_STATUS,default='0')
 	buyer = models.ForeignKey(Profile,related_name='+',default='')
 	other_details = models.TextField(default='')
-	# def __unicode__(self):
-	# 	return self.name + "  " + self.id
+	def __unicode__(self):
+		return self.name_id + " "
+	# add the id in the value to be returned
