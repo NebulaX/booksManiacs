@@ -29,6 +29,8 @@ class Book(models.Model):
 	name = models.CharField(max_length=100)
 	author = models.CharField(max_length=40,primary_key=True)
 	avail_count = models.IntegerField(default=0)
+	# price = models.IntegerField()
+	# imageLink = models.CharField(max_length=500)
 	def __unicode__(self):
 		return self.name + " (" + self.author + ")"
 
