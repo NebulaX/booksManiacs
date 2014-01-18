@@ -7,45 +7,65 @@
 		{% load staticfiles %}
 
 		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/style.css' %}" />
-		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/books.css' %}" />
+		<!-- <link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/books.css' %}" /> -->
+		<script type="text/javascript" src="{% static 'booksManiacs/js/jquery-1.10.2.js' %}"></script>
+		<script type="text/javascript" src="{% static 'booksManiacs/js/script.js' %}"></script>
 
 	</head>
 	<body>
-
-		<h1> this is the home page of the booksManiacs site </h1>
-
-
-		<!--if not logged in person will see this-->
-		<div id = "cover">
-			<div id = "brandcover">
-				<div id = "brandtitle"><i class ="fa fa-book"></i> booksManiacs</div>
-				<hr>
-				<p><i class="fa fa-inr"></i> Cheap books ! <i class = "fa fa-star-o"></i> Great Deals !</p>
+		<!--if logged in the user will see the following content-->
+		{% if name %}
+			<h1> this is the home page of the booksManiacs site and you are logged in</h1>
+			<a href="/booksManiacs/logout/">logout</a>
+			<!--if not logged in person will see this-->
+			<div id = "cover">
+				<div id = "brandcover">
+					<div id = "brandtitle"><i class ="fa fa-book"></i> booksManiacs</div>
+					<hr>
+					<p><i class="fa fa-inr"></i> Cheap books ! <i class = "fa fa-star-o"></i> Great Deals !</p>
+				</div>
 			</div>
-		</div>
-		<div id="logged_out">
+		{% else %}
+			<a href="/booksManiacs/login/">login</a>
+			<div id="logged_out">
 			hello world !
-			<form>
-				<label>email</label><input type="input">
-				<label>password</label><input type="input">
+			<form action="/booksManiacs/login/" method="POST">
+				{% csrf_token %}
+				<label>email</label><input name="user" type="input">
+				<label>password</label><input name="password" type="password">
 				<input type="submit">
 			</form>
-			<form>
-				<label></label><input type="input">
-				<label></label><input type="input">
-				<label></label><input type="input">
-				<label></label><input type="input">
-				<label></label><input type="input">
-				<label></label><input type="input">
-				<label></label><input type="submit">
-			</form>
+			<div onclick="showSignup();">S!gnup</div>
+			<div id="signup">
+				<form action="/booksManiac/signup/" method="POST">
+					{% csrf_token %}
+					<label>name</label><input type="input">
+					<label>email id</label><input type="email">
+					<label>phone number</label><input type="input">
+					<label>password</label><input type="password">
+					<label>confirm password</label><input type="password">
+					<label>bhawan</label>
+					<select name="bhawan">
+						<option value="null"> --------  </option>
+						<option value="RKB">Radha Krishnan</option>
+						<option value="CLB">Cautley</option>
+						<option value="RJB">Rajendra</option>
+						<option value="GNB">Ganga</option>
+					</select>
+					<label>Room number</label><input type="input">
+					<label>enrollment number</label><input type="input">
+					<label>year</label><input type="input">
+					<label></label><input type="submit">
+				</form>
+			</div>
 		</div>
-
-
-
-
-		<!--if logged in user will see this-->
+		{% endif %}
+		<!--logged in content ends-->
 		<div id="logged_in">the booksManiacs are here</div>
+
+		
+		
+
 
 	</body>
 </html>

@@ -16,3 +16,8 @@
 	text-decoration : none;
 	color: #0f0fff;
 }
+
+#signup
+{
+	display: none;
+}

@@ -14,18 +14,20 @@
 	<body>
 	<div id = "booksContainer">
 		{% if books_available %}
-		{% for book in books_available %}
-			{% if book.avail_count %}
-		<div class = "panel panel-primary">
-		<div class = "panel-heading">
-			<div class = "panel-title">{{ book.name }}
-			<div class = "small"><i class="fa fa-pencil"></i> {{ book.author}}</div>
-			<!-- <div><i class="fa fa-inr"></i> {{ book.price }}</div> -->
-			</div>
-			<div class = "panel-body">
-			</div>
-			</div>
-			</div>
+			{% for book in books_available %}
+				{% if book.avail_count %}
+				<a href="/booksManiacs/items/{{ book.author }}" >
+				<div class = "panel panel-primary">
+					<div class = "panel-heading">
+						<div class = "panel-title">{{ book.name }}
+							<div class = "small"><i class="fa fa-pencil"></i>{{ book.author}}</div>
+							<!-- <div><i class="fa fa-inr"></i> {{ book.price }}</div> -->
+						</div>
+						<div class = "panel-body">
+						</div>
+					</div>
+				</div>
+				</a>
 			{% endif %}
 		{% endfor %}
 		{% else %}

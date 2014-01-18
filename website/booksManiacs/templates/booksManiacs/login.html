@@ -1,0 +1,19 @@
+<html>
+	<body>
+		{% if name %}
+			<p>hello {{ name }} {{ password }} </p>
+			<a href="/booksManiacs/logout/" >logout</a>
+			<a href="/booksManiacs/" >home</a>
+		{% else %}
+			{% if errorString %}
+				{{ errorString }}
+			{% endif %}
+			<form action="" method="POST">
+				{% csrf_token %}
+				<input type="email" name="user">
+				<input type="password" name="password">
+				<input type="submit">
+			</form>
+		{% endif %}
+	</body>
+</html>
