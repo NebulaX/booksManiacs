@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 # from django.template import RequestContext, loader
 
-from booksManiacs.models import Book, Item
+from booksManiacs.models import Book, Item, Profile
 
 def home(request):
 	if request.session.get('user'):
@@ -36,15 +36,20 @@ def login(request):
 
 	else:
 		if 'user' in request.POST:
-			name = request.POST['user']
-			password = request.POST['password']
-			if password == "akshesh":
-				request.session['user'] = name
-				data = {'name': name}
-				return HttpResponseRedirect("/booksManiacs/")
+			email = request.POST['user']
+			userExist = Profile.objects.filter(email=email).count()
+			if userExist:
+				loginPassword = request.POST['password']
+				realPassword = Profile.objects.get(email=email).password
+				print realPassword
+				if loginPassword == realPassword:
+					request.session['user'] = email
+					return HttpResponseRedirect("/booksManiacs/")
+				else:
+					data = {'errorString': 'your username and password didnt match'}
+					return render(request, 'booksManiacs/login.html', data)
 			else:
-				data = {'errorString': 'your username and password didnt match'}
-				return render(request, 'booksManiacs/login.html', data)
+				return HttpResponse("this id is not registered on our site")
 		else:
 			return render(request, 'booksManiacs/login.html')
 
@@ -55,3 +60,19 @@ def logout(request):
 		return HttpResponseRedirect("/booksManiacs/")
 	else:
 		return HttpResponse("You have been successfull in finding a broken link..well you are lost")
+
+def signup(request):
+	if 'name' in request.POST:
+		name        = request.POST['name']
+		email       = request.POST['email']
+		phone       = request.POST['phone']
+		password    = request.POST['pass']
+		confirmPass = request.POST['confPass']
+		bhawan      = request.POST['bhawan']
+		room        = request.POST['room']
+		enrNo       = request.POST['enrNo']
+		year        = request.POST['year']
+		p = Profile.objects.create(name = name, email = email, password = password, mobile_number = phone, room_number = room, hostel = "clb", year = year, enrollment_number = enrNo)
+		return HttpResponse("yeah here")
+	else:
+		return HttpResponseRedirect("/booksManiacs/")

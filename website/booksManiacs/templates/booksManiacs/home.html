@@ -37,13 +37,13 @@
 			</form>
 			<div onclick="showSignup();">S!gnup</div>
 			<div id="signup">
-				<form action="/booksManiac/signup/" method="POST">
+				<form action="/booksManiacs/signup/" method="POST">
 					{% csrf_token %}
-					<label>name</label><input type="input">
-					<label>email id</label><input type="email">
-					<label>phone number</label><input type="input">
-					<label>password</label><input type="password">
-					<label>confirm password</label><input type="password">
+					<label>name</label><input type="input" name="name">
+					<label>email id</label><input type="email" name="email">
+					<label>phone number</label><input type="input" name="phone">
+					<label>password</label><input type="password" name="pass">
+					<label>confirm password</label><input type="password" name="confPass">
 					<label>bhawan</label>
 					<select name="bhawan">
 						<option value="null"> --------  </option>
@@ -52,9 +52,9 @@
 						<option value="RJB">Rajendra</option>
 						<option value="GNB">Ganga</option>
 					</select>
-					<label>Room number</label><input type="input">
-					<label>enrollment number</label><input type="input">
-					<label>year</label><input type="input">
+					<label>Room number</label><input type="input" name="room">
+					<label>enrollment number</label><input type="input" name="enrNo">
+					<label>year</label><input type="input" name="year">
 					<label></label><input type="submit">
 				</form>
 			</div>
