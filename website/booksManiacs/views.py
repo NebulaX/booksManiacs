@@ -22,8 +22,14 @@ def items(request, book_author):
 	exist = Book.objects.filter(author=book_author).count()
 	if exist:
 		# return HttpResponse("<h1>It works! %s</h1>" % book_author)
-		req_items = Item.objects.filter(name=book_author)
-		data = {'req_items' : req_items, 'book_author' : book_author, 'exist' : exist}
+		if request.session.get('user'):
+			name = request.session.get('user')
+			req_items = Item.objects.filter(name=book_author, buy_request=0).exclude(seller=name)
+			own_items = Item.objects.filter(name=book_author, seller=name).count()
+			data = {'req_items' : req_items, 'book_author' : book_author, 'exist' : exist, 'name' : name, 'own_items' : own_items}
+		else:
+			req_items = Item.objects.filter(name=book_author)
+			data = {'req_items' : req_items, 'book_author' : book_author, 'exist' : exist}
 		return render(request, 'booksManiacs/items.html', data)
 	else:
 		return HttpResponse("sorry there is no such book. you have reached the wrong page.")
@@ -41,7 +47,6 @@ def login(request):
 			if userExist:
 				loginPassword = request.POST['password']
 				realPassword = Profile.objects.get(email=email).password
-				print realPassword
 				if loginPassword == realPassword:
 					request.session['user'] = email
 					return HttpResponseRedirect("/booksManiacs/")
@@ -59,7 +64,7 @@ def logout(request):
 		del request.session['user']
 		return HttpResponseRedirect("/booksManiacs/")
 	else:
-		return HttpResponse("You have been successfull in finding a broken link..well you are lost")
+		return HttpResponse('You have been successfull in finding a broken link..well you are lost<br /><a href="/booksManiacs/">home</a>')
 
 def signup(request):
 	if 'name' in request.POST:
@@ -72,7 +77,53 @@ def signup(request):
 		room        = request.POST['room']
 		enrNo       = request.POST['enrNo']
 		year        = request.POST['year']
-		p = Profile.objects.create(name = name, email = email, password = password, mobile_number = phone, room_number = room, hostel = "clb", year = year, enrollment_number = enrNo)
-		return HttpResponse("yeah here")
+		# other checks
+		if password == confirmPass:
+			p = Profile.objects.create(name = name, email = email, password = password, mobile_number = phone, room_number = room, hostel = bhawan, year = year, enrollment_number = enrNo)
+			messageString = "you have registered successfully"
+			return render(request, 'booksManiacs/home.html', {'messageString': messageString})
+		else:
+			errorString = "your password did not match with the confirm password"
+			return render(request, 'booksManiacs/home.html', {'errorString': errorString})
 	else:
 		return HttpResponseRedirect("/booksManiacs/")
+
+def buy(request,bookId):
+	if request.session.get('user'):
+		buyer = request.session.get('user')
+		exist = Item.objects.filter(pk=bookId).count()
+		if exist:
+			p = Item.objects.get(pk=bookId)
+			ibuyer = Profile.objects.get(email=buyer)
+			p.buyer = ibuyer
+			p.buy_request = 1
+			p.save()
+			messageString = "Your request has been registered. We would be contacting you soon for the transaction."
+			return HttpResponseRedirect("/booksManiacs/", {'messageString': messageString})
+		else:
+			return HttpResponseRedirect("/booksManiacs/")
+	else:
+		return HttpResponseRedirect("/booksManiacs/")
+	# return render(request, 'booksManiacs/buy.html')
+
+def sell(request):
+	if 'author' in request.POST:
+		author    = request.POST['author']
+		edition   = request.POST['edition']
+		other     = request.POST['other']
+		# other checks
+		if author == "--------":
+			errorString = "plz fill in a valid author"
+			allBooks = Book.objects.order_by('author')
+			return render(request, 'booksManiacs/sell.html', {'allBooks': allBooks, 'errorString': errorString})
+		else:
+			b = Book.objects.get(author=author)
+			seller = request.session.get('user')
+			p = Profile.objects.get(email=seller)
+			i = Item.objects.create(name = b, edition = edition, seller = p, other_details = other)
+			b.avail_count += 1
+			b.save()
+			return HttpResponseRedirect("/booksManiacs")
+	else:
+		allBooks = Book.objects.order_by('author')
+		return render(request, 'booksManiacs/sell.html', {'allBooks': allBooks})

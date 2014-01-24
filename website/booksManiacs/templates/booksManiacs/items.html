@@ -3,8 +3,16 @@
 
 {% if req_items %}
 {% for item in req_items %}
-	<div>{{ item.name }} {{ item.edition }}</div><br />
+	<div>{{ item.name }} {{ item.edition }}
+		{% if name %}
+			<a href="/booksManiacs/buy/{{ item.id }}/">buy</a>
+		{% endif %}
+	</div>
+	<br />
 {% endfor %}
 {% else %}
 Sorry...We dont have this book in stock right now.Please try later.
+{% endif %}
+{% if own_items %}
+<p>Other than these you have added {{ own_items }} book(s).</p>
 {% endif %}

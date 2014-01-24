@@ -9,5 +9,7 @@ urlpatterns = patterns('',
 	url(r'^signup/$', views.signup, name='signup'),
 	url(r'^logout/$', views.logout, name='logout'),
 	url(r'^login/$', views.login, name='login'),
+	url(r'^buy/(?P<bookId>\d+)/$', views.buy, name='buy'),
+	url(r'^sell/$', views.sell, name='sell'),
 	# url(r'^/$', views., name=''),
 )

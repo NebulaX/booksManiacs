@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>
+		</title>
+	</head>
+	<body>
+		<div>
+			<form action="" method="POST">
+				{% csrf_token %}
+				<label>book author:</label>
+				<select name="author">
+					<option value="null"> --------  </option>
+					{% for book in allBooks %}
+						<option value="{{ book.author }}">{{ book.author }}</option>
+					{% endfor %}
+				</select>
+				<label>edition:</label><input type="input" name="edition">
+				<label>other details:</label><input type="textarea" name="other">
+				<input type="submit">
+			</form>
+		</div>
+		<div>
+			{% if errorString %}
+				{{ errorString }}
+			{% endif %}
+		</div>
+	</body>
