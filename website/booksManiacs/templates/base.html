@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<title>{% block title %}booksManiacs{% endblock %}</title>
+
+		{% load staticfiles %}
+
+		{% block staticFiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/style.css' %}" />
+		<!-- <link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/books.css' %}" />  -->
+		<script type="text/javascript" src="{% static 'booksManiacs/js/jquery-1.10.2.js' %}"></script>
+		<script type="text/javascript" src="{% static 'booksManiacs/js/script.js' %}"></script>
+		{% endblock %}
+
+	</head>
+	<body>
+		{% block header %}
+		{% endblock %}
+
+		{% block container %}
+		{% endblock %}
+
+		{% block footer %}
+		{% endblock %}
+	</body>
+</html>
