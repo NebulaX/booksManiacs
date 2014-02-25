@@ -4,8 +4,8 @@ from booksManiacs import views
 # handler404 = 'django.views.defaults.page_not_found'
 
 urlpatterns = patterns('',
-	url(r'^$', views.home, name='home'),
-	url(r'^books/$', views.books, name='books'),
+	url(r'^$', views.books, name='books'),
+	url(r'^home/$', views.home, name='home'),
 	url(r'^items/(?P<book_author>[\w\s]+)/$', views.items, name='items'),
 	url(r'^signup/$', views.signup, name='signup'),
 	url(r'^logout/$', views.logout, name='logout'),
