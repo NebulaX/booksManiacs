@@ -1,0 +1,26 @@
+
+						<div onclick="showSignup();">S!gnup</div>
+						<div id="signup">
+							<form action="/booksManiacs/signup/" method="POST">
+								{% csrf_token %}
+								<label>name</label><input type="input" name="name" required>
+								<label>email id</label><input type="email" name="email" required>
+								<label>phone number</label><input type="input" name="phone" required>
+								<label>password</label><input type="password" name="pass" required>
+								<label>confirm password</label><input type="password" name="confPass" required>
+								<label>bhawan</label>
+								<!-- <select name="bhawan" onfocus='this.size=10;' onblur='this.size=1;' onchange='this.size=1; this.blur();'> -->
+								<select name="bhawan">
+									<option value="null"> --------  </option>
+									<option value="rkb">Radha Krishnan</option>
+									<option value="clb">Cautley</option>
+									<option value="rjb">Rajendra</option>
+									<option value="gnb">Ganga</option>
+								</select>
+								<label>Room number</label><input type="input" name="room">
+								<label>enrollment number</label><input type="input" name="enrNo">
+								<label>year</label><input type="input" name="year">
+								<!--/////////////////////////////////   add the select tag for year here ////////////////-->
+								<input type="submit">
+							</form>
+						</div>

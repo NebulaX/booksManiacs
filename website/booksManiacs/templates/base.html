@@ -4,22 +4,90 @@
 
 		{% load staticfiles %}
 
+		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/bootstrap.min.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/application.css' %}" />
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+		<script type="text/javascript" src="{% static 'booksManiacs/js/jquery-1.10.2.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'booksManiacs/js/bootstrap.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'booksManiacs/js/masonry.js' %}"></script>
+		<script type="text/javascript" src="{% static 'booksManiacs/js/application.js' %}"></script>
+
 		{% block staticFiles %}
-		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/style.css' %}" />
-		<!-- <link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/books.css' %}" />  -->
-		<script type="text/javascript" src="{% static 'booksManiacs/js/jquery-1.10.2.js' %}"></script>
-		<script type="text/javascript" src="{% static 'booksManiacs/js/script.js' %}"></script>
 		{% endblock %}
 
 	</head>
 	<body>
-		{% block header %}
-		{% endblock %}
+		<div id = "header">
+			<div id = "line"></div>
+			<div id = "headerContent">
+				<!-- The three nav buttons -->
+				<div id = "navData" class = "btn-group">
+					<a href = "/booksManiacs/" class = "btn btn-success btn-lg">
+						<i class = "fa fa-home fa-2x"></i>
+					</a>
+					<button class = "btn btn-success btn-lg">
+						<i class = "fa fa-shopping-cart fa-2x"></i>
+					</button>
+					<button class = "btn btn-success btn-lg" data-toggle = "modal" data-target = "#myModal">
+						<i class = "fa fa-info-circle fa-2x"></i>
+					</button>
+				</div>
 
-		{% block container %}
-		{% endblock %}
+				<!-- Signin form -->
+				<div id = "forms">
+				{% if name %}
+					<div class = "btn-group">
+						<!-- Set URL for User Profile here @akshesh-->
+						<a href = "#" class = "btn btn-info">
+							<i class = "fa fa-user"></i> {{ name }}
+						</a>
 
-		{% block footer %}
-		{% endblock %}
+						<a href="/booksManiacs/logout/" class = "btn btn-danger">
+							<i class = "fa fa-sign-out"></i> Sign Out
+						</a>
+					</div>
+
+				{% else %}
+
+					<form action="/booksManiacs/login/" method="POST" class = "form-inline">
+						{% csrf_token %}
+						<div class = "form-group">
+							<input name = "user" type = "text" class = "form-control" placeholder = "Email" required>
+						</div>
+						<div class = "form-group">
+							<input name = "password" type = "password" class = "form-control" placeholder = "Password" required>
+						</div>
+						<div class = "btn-group">
+							<button type = "submit" class="btn btn-primary"><i class = "fa fa-sign-in"></i> Sign In</button>
+							<a href = "/booksManiacs/signup" class="btn btn-success">
+								<i class = "fa fa-share-square-o"></i> Sign Up
+							</a>
+						</div>
+					</form>
+
+					{% if messageString %}
+						{{ messageString }}
+					{% endif %}
+						
+					{% if errorString %}
+						{{ errorString }}
+					{% endif %}
+
+				{% endif %}
+				</div>
+			</div>
+		</div>
+
+		<div id = "content">
+			{% block container %}
+			{% endblock %}
+		</div>
+
+		<div id = "follow">
+			<a href = "http://fb.com/" target="_blank"><i class = "fa fa-facebook fa-lg"></i></a> <a href = "http://www.twitter.com" target = "_blank"><i class = "fa fa-twitter fa-lg"></i></a> <a href= "mailto:admin@gmail.com"><i class = "fa fa-envelope fa-lg"></i></a>
+		</div>
+		<div id = "footer">
+		</div>
 	</body>
 </html>
