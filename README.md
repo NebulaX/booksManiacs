@@ -14,7 +14,7 @@ Source Code of the website built for our project bookManiacs using Django Web Fr
 ----------------------------
 * Clone this repository to your local machine
 * In the **website** directory of the root folder create a file named `dbConfig`
-* Open `dbConfig` using any text editor and enter the full path of the file `booksManiacs.sqlite3` (present in the database folder)
+* Open `dbConfig` using any text editor and enter the full path of the file `booksManiacs.sqlite3` present in the database folder (refer to dbConfig.sample)
  
 ###Starting Server
 ---------------------------- 
