@@ -126,7 +126,18 @@ def sell(request):
 			i = Item.objects.create(name = b, edition = edition, seller = p, other_details = other)
 			b.avail_count += 1
 			b.save()
-			return HttpResponseRedirect("/booksManiacs")
+			return HttpResponseRedirect("/booksManiacs/")
 	else:
 		allBooks = Book.objects.order_by('author')
 		return render(request, 'booksManiacs/sell.html', {'allBooks': allBooks})
+
+def profile(request):
+	if request.session.get('user'):
+		name = request.session['user']
+		print name
+		sellerOf = Item.objects.filter(seller = name)
+		buyerOf = Item.objects.filter(buyer = name)
+		data = {'sellerOf' : sellerOf,'buyerOf' : buyerOf, 'name' : name}
+		return render(request, 'booksManiacs/profile.html', data)
+	else:
+		return HttpResponseRedirect("/booksManiacs/login/")

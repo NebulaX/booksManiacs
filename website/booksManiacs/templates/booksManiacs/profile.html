@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+{% block container %}
+
+{% if sellerOf %}
+	{% for item in sellerOf %}
+		{{ item.name }}
+		<a href="#">delete entry</a>
+	{% endfor %}
+{% else %}
+	you have not added any book for sell.
+	<a href="/booksManiacs/sell/">wanna add one ?</a>
+{% endif %}
+<br />
+{% if buyerOf %}
+	{% for item in buyerOf %}
+		{{ item.name }}
+		<a href="#">delete entry</a>
+	{% endfor %}
+{% else %}
+	you have not requested to buy any book.
+	<a href="/booksManiacs/">wanna add one ?</a>
+{% endif %}
+
+{% endblock %}
