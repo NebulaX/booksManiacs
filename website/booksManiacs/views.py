@@ -67,26 +67,29 @@ def logout(request):
 		return HttpResponse('You have been successfull in finding a broken link..well you are lost<br /><a href="/booksManiacs/">home</a>')
 
 def signup(request):
-	if 'name' in request.POST:
-		name        = request.POST['name']
-		email       = request.POST['email']
-		phone       = request.POST['phone']
-		password    = request.POST['pass']
-		confirmPass = request.POST['confPass']
-		bhawan      = request.POST['bhawan']
-		room        = request.POST['room']
-		enrNo       = request.POST['enrNo']
-		year        = request.POST['year']
-		# other checks
-		if password == confirmPass:
-			p = Profile.objects.create(name = name, email = email, password = password, mobile_number = phone, room_number = room, hostel = bhawan, year = year, enrollment_number = enrNo)
-			messageString = "you have registered successfully"
-			return render(request, 'booksManiacs/home.html', {'messageString': messageString})
-		else:
-			errorString = "your password did not match with the confirm password"
-			return render(request, 'booksManiacs/home.html', {'errorString': errorString})
-	else:
+	if 'user' in request.session:
 		return HttpResponseRedirect("/booksManiacs/")
+	else:
+		if 'name' in request.POST:
+			name        = request.POST['name']
+			email       = request.POST['email']
+			phone       = request.POST['phone']
+			password    = request.POST['pass']
+			confirmPass = request.POST['confPass']
+			bhawan      = request.POST['bhawan']
+			room        = request.POST['room']
+			enrNo       = request.POST['enrNo']
+			year        = request.POST['year']
+			# other checks
+			if password == confirmPass:
+				p = Profile.objects.create(name = name, email = email, password = password, mobile_number = phone, room_number = room, hostel = bhawan, year = year, enrollment_number = enrNo)
+				messageString = "you have registered successfully"
+				return render(request, 'booksManiacs/home.html', {'messageString': messageString})
+			else:
+				errorString = "your password did not match with the confirm password"
+				return render(request, 'booksManiacs/home.html', {'errorString': errorString})
+		else:
+			return render(request, 'booksManiacs/signup.html')
 
 def buy(request,bookId):
 	if request.session.get('user'):
