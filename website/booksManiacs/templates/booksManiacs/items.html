@@ -1,18 +1,41 @@
-{{ book_author }}
-<br><br>
+{% extends "base.html" %}
+	
+	{% load staticfiles %}
 
-{% if req_items %}
-{% for item in req_items %}
-	<div>{{ item.name }} {{ item.edition }}
-		{% if name %}
-			<a href="/booksManiacs/buy/{{ item.id }}/">buy</a>
-		{% endif %}
-	</div>
-	<br />
-{% endfor %}
-{% else %}
-Sorry...We dont have this book in stock right now.Please try later.
-{% endif %}
-{% if own_items %}
-<p>Other than these you have added {{ own_items }} book(s).</p>
-{% endif %}
+	{% block title %}
+		{{ book_author }} | booksManiacs
+	{% endblock %}
+
+	{% block staticFiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/items.css' %}" />
+	{% endblock %}
+
+	{% block container %}
+
+		<h1 id = "bookName"><i class = "fa fa-book"></i> {{ book_author }}</h1>
+		<hr>
+
+		<div class="row">
+			<div class="col-md-3 col-md-offset-2">
+				<img src="{% static 'booksManiacs/images/book.png' %}" class="bookImage">
+			</div>
+			<div class="col-md-4 itemDetails">
+				{% if req_items %}
+					<ul>
+					{% for item in req_items %}
+						<li class="itemRow">{{ item.name }} - {{ item.edition }}
+							{% if name %}
+								<a href="/booksManiacs/buy/{{ item.id }}/"><i class="fa fa-shopping-cart"></i> Buy</a>
+							{% endif %}
+						</li>
+					{% endfor %}
+					</ul>
+				{% else %}
+					<div id="bookError">Sorry...We dont have this book in stock right now.Please try later.</div>
+				{% endif %}
+				{% if own_items %}
+					<div id="bookUserDetails">Other than these you have added {{ own_items }} book(s).</div>
+				{% endif %}
+			</div>
+		</div>
+	{% endblock %}

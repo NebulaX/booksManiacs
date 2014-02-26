@@ -1,0 +1,52 @@
+#bookName {
+	text-align: center;
+	margin-top: 20pt;
+	margin-left: 30pt;
+	font-size: 30pt;
+	text-shadow: 0px 0px 10px;
+}
+
+.bookImage {
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px;
+	width: 300px;
+}
+
+.itemDetails {
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0px 0px 10px;
+	background: white;
+}
+
+.itemDetails ul {
+	list-style: none;
+}
+
+.itemRow {
+	border-radius: 8px;
+	padding: 10px;
+	margin-bottom: 8px;
+	background: rgb(236, 236, 236);
+	box-shadow: 0px 0px 5px inset;
+}
+
+.itemRow a {
+	float: right;
+}
+
+#bookUserDetails {
+	background: rgb(140, 255, 159);
+	border-radius: 8px;
+	padding: 10px;
+	/* margin-bottom: 10px; */
+	box-shadow: 0px 0px 10px;
+}
+
+#bookError {
+	background: rgb(255, 116, 116);
+	border-radius: 8px;
+	padding: 10px;
+	margin-bottom: 10px;
+	box-shadow: 0px 0px 10px;
+}
