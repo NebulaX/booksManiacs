@@ -20,12 +20,15 @@
 	border-width: 3pt;
 	font-size: 30pt;
 	padding: 20pt;
-	font-family: 'segoe ui light';
-	width: auto;
+	/* font-family: 'segoe ui light'; */
+	width: 80%;
+}
+
+#lemmein {
 	position: absolute;
-	bottom: 30pt;
-	left: 30pt;
-	right: 30pt;
+	text-align: center;
+	width: 100%;
+	bottom: 20px;
 }
 
 #lemmein .btn-primary:hover {

@@ -1,17 +1,4 @@
-<html>
-	<head>
-		<title>books - booksManiacs</title>
-		{% load staticfiles %}
-		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/books.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/bootstrap.css' %}">
-		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/bootstrap.min.css' %}">
-		<script type="text/javascript" src="{% static 'booksManiacs/js/jquery-1.10.2.js' %}"></script>
-		<script type="text/javascript" src="{% static 'booksManiacs/js/application.js' %}"></script>
-		<script type="text/javascript" src="{% static 'booksManiacs/js/bootstrap.js' %}"></script>
-		<script type="text/javascript" src="{% static 'booksManiacs/js/bootstrap.min.js' %}"></script>
-		<script type="text/javascript" src="{% static 'booksManiacs/js/masonry.js' %}"></script>
-	</head>
-	<body>
+
 	<div id = "booksContainer">
 		{% if books_available %}
 			{% for book in books_available %}
@@ -21,9 +8,10 @@
 						<div class = "panel-heading">
 							<div class = "panel-title">{{ book.name }}
 								<div class = "small"><i class="fa fa-pencil"></i>{{ book.author}}</div>
-								<!-- <div><i class="fa fa-inr"></i> {{ book.price }}</div> -->
+								<div><i class="fa fa-inr"></i> {{ book.price }}</div>
 							</div>
 							<div class = "panel-body">
+								<img src="{% static 'booksManiacs/images/book.png' %}">
 							</div>
 						</div>
 					</div>
@@ -37,17 +25,16 @@
 			</div>
 			</div>
 		{% endif %}	
-	</div>	
+	</div>
 
 	<!-- -->
-		<div id = "cover" onclick="coverUp()">
+		<!-- <div id = "cover" onclick="coverUp()">
 			<div id = "brandcover">
 				<div id = "brandtitle"><i class ="fa fa-book"></i> bookManiacs</div>
 				<hr>
 				<p><i class="fa fa-inr"></i> Cheap books ! <i class = "fa fa-star-o"></i> Great Deals !</p>
 			</div>
-		</div>
-	</body>
+		</div> -->
 
 
 <script type="text/javascript">
@@ -63,9 +50,4 @@
 		}
 	});
 })
-
-	function coverUp(){
-		$("#cover").fadeOut();
-	}
 </script>
-</html>
