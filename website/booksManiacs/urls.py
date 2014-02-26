@@ -5,7 +5,7 @@ from booksManiacs import views
 
 urlpatterns = patterns('',
 	url(r'^$', views.books, name='books'),
-	url(r'^home/$', views.home, name='home'),
+	# url(r'^home/$', views.home, name='home'),
 	url(r'^items/(?P<book_author>[\w\s]+)/$', views.items, name='items'),
 	url(r'^signup/$', views.signup, name='signup'),
 	url(r'^logout/$', views.logout, name='logout'),
