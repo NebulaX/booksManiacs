@@ -1,29 +1,36 @@
 {% extends "base.html" %}
 
+	{% load staticfiles %}
 
-{% block container %}
-<a href="/booksManiacs/password/">change password</a><br />
-<br />
-{% if sellerOf %}
-	books you have added to sell:<br />
-	{% for item in sellerOf %}
-		{{ item.name }}
-		<a href="#">delete entry</a><br />
-	{% endfor %}
-{% else %}
-	you have not added any book for sell.
-	<a href="/booksManiacs/sell/">wanna add one ?</a><br />
-{% endif %}
-<br />
-{% if buyerOf %}
-	books you want to buy:<br />
-	{% for item in buyerOf %}
-		{{ item.name }}
-		<a href="#">delete entry</a><br />
-	{% endfor %}
-{% else %}
-	you have not requested to buy any book.
-	<a href="/booksManiacs/">wanna add one ?</a><br />
-{% endif %}
+	{% block staticFiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/profile.css' %}" />
+	{% endblock %}
 
-{% endblock %}
+	{% block container %}
+		<div id = "changePassword">
+			<a href="/booksManiacs/password/" class="btn btn-warning">change password</a>
+		</div>
+
+		{% if sellerOf %}
+			books you have added to sell:<br />
+			{% for item in sellerOf %}
+				{{ item.name }}
+				<a href="#">delete entry</a><br />
+			{% endfor %}
+		{% else %}
+			you have not added any book for sell.
+			<a href="/booksManiacs/sell/">wanna add one ?</a><br />
+		{% endif %}
+		<br />
+		{% if buyerOf %}
+			books you want to buy:<br />
+			{% for item in buyerOf %}
+				{{ item.name }}
+				<a href="#">delete entry</a><br />
+			{% endfor %}
+		{% else %}
+			you have not requested to buy any book.
+			<a href="/booksManiacs/">wanna add one ?</a><br />
+		{% endif %}
+
+	{% endblock %}
