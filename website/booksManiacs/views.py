@@ -141,3 +141,25 @@ def profile(request):
 		return render(request, 'booksManiacs/profile.html', data)
 	else:
 		return HttpResponseRedirect("/booksManiacs/login/")
+
+def password(request):
+	if request.session.get('user'):
+		email = request.session['user']
+		if 'oldPass' in request.POST:
+			oldPass    = request.POST['oldPass']
+			newPass    = request.POST['newPass']
+			confPass   = request.POST['confPass']
+			if newPass != confPass:
+				return HttpResponse("the two passwords you entered did not match.")
+			user = Profile.objects.get(email=email)
+			realPassword = user.password
+			if oldPass == realPassword:
+				user.password = newPass
+				user.save()
+				return HttpResponseRedirect("/booksManiacs/profile")
+			else:
+				return HttpResponse("entered wrong password")
+		else:
+			return render(request, 'booksManiacs/password.html')
+	else:
+		return HttpResponseRedirect("/booksManiacs/")

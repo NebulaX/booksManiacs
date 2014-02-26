@@ -12,6 +12,7 @@ urlpatterns = patterns('',
 	url(r'^login/$', views.login, name='login'),
 	url(r'^buy/(?P<bookId>\d+)/$', views.buy, name='buy'),
 	url(r'^sell/$', views.sell, name='sell'),
-	url(r'^profile/$', views.profile, name='profile')
+	url(r'^profile/$', views.profile, name='profile'),
+	url(r'^password/$', views.password, name='password')
 	# url(r'^/$', views., name=''),
 )
