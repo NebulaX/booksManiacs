@@ -38,11 +38,11 @@
 
 				<!-- Signin form -->
 				<div id = "forms">
-				{% if name %}
+				{% if request.session.user %}
 					<div class = "btn-group">
 						<!-- Set URL for User Profile here @akshesh-->
 						<a href = "#" class = "btn btn-info">
-							<i class = "fa fa-user"></i> {{ name }}
+							<i class = "fa fa-user"></i> {{ request.session.user }}
 						</a>
 
 						<a href="/booksManiacs/logout/" class = "btn btn-danger">

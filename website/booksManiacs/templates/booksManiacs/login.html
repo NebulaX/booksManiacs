@@ -2,8 +2,8 @@
 	{% block container %}
 	<h1 class="form-title">Sign In</h1>
 	<hr>
-	{% if name %}
-		<h3>Hello ! {{ name }} {{ password }} </h3>
+	{% if request.session.user %}
+		<h3>Hello ! {{ name }} </h3>
 		<h2>You are already Signed in !</h2>
 	{% else %}
 		<div class="form-depression">
