@@ -1,3 +1,9 @@
+# # Corresponding Django view, "django-guestbook/guestbook/views.py"
+# from django.core.cache import cache
+# from django.views.generic.simple import direct_to_template
+# from guestbook.forms import CreateGreetingForm
+# from guestbook.models import Greetin
+
 # Create your views here.
 
 from django.http import HttpResponse, HttpResponseRedirect
