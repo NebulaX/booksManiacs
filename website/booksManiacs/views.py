@@ -5,6 +5,7 @@ from django.shortcuts import render
 # from django.template import RequestContext, loader
 
 from booksManiacs.models import Book, Item, Profile
+from recaptcha.client import captcha
 
 def home(request):
 	if request.session.get('user'):
@@ -82,12 +83,21 @@ def signup(request):
 			year        = request.POST['year']
 			# other checks
 			if password == confirmPass:
-				p = Profile.objects.create(name = name, email = email, password = password, mobile_number = phone, room_number = room, hostel = bhawan, year = year, enrollment_number = enrNo)
-				messageString = "you have registered successfully"
-				return render(request, 'booksManiacs/home.html', {'messageString': messageString})
+				response = captcha.submit(  
+					request.POST.get('recaptcha_challenge_field'),
+					request.POST.get('recaptcha_response_field'),
+					'6Le7XvASAAAAAKk5cQcHOwxBRNjKBl49I_yRw2ym',
+					request.META['REMOTE_ADDR'],)
+				if response.is_valid:
+					p = Profile.objects.create(name = name, email = email, password = password, mobile_number = phone, room_number = room, hostel = bhawan, year = year, enrollment_number = enrNo)
+					messageString = "you have registered successfully"
+					return render(request, 'booksManiacs/login.html', {'messageString': messageString})
+				else:
+					errorString = 'please fill the captcha correctly'
+					return render(request, 'booksManiacs/signup.html', {'errorString': errorString})
 			else:
 				errorString = "your password did not match with the confirm password"
-				return render(request, 'booksManiacs/home.html', {'errorString': errorString})
+				return render(request, 'booksManiacs/signup.html', {'errorString': errorString})
 		else:
 			return render(request, 'booksManiacs/signup.html')
 
