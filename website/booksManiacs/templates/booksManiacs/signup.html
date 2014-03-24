@@ -7,48 +7,48 @@
 			{% csrf_token %}
 
 			<div class="form-group">
-			<label class="col-lg-5 control-label">Name</label>
+			<label class="col-lg-5 control-label">Name*</label>
 			<div class="col-lg-3">
-				<input type="input" name="name" required class = "form-control">
+				<input type="input" name="name" class = "form-control">
 			</div>
 			</div>
 
 			<div class="form-group">
-			<label class="col-lg-5 control-label">Email</label>
+			<label class="col-lg-5 control-label">Email*</label>
 			<div class="col-lg-3">
 			<div class="input-group">
 				<div class="input-group-addon"><i class = "fa fa-user"></i></div>
-				<input type="email" name="email" required class = "form-control">
+				<input type="email" name="email" class = "form-control">
 			</div>
 			</div>
 			</div>
 
 			<div class="form-group">
-			<label class="col-lg-5 control-label">Phone</label>
+			<label class="col-lg-5 control-label">Phone*</label>
 			<div class="col-lg-3">
 			<div class="input-group">
 				<div class="input-group-addon">+91</div>
-				<input type="input" name="phone" required class = "form-control">
+				<input type="input" name="phone" class = "form-control">
 			</div>
 			</div>
 			</div>
 
 			<div class="form-group">
-			<label class="col-lg-5 control-label">Password</label>
+			<label class="col-lg-5 control-label">Password*</label>
 			<div class="col-lg-3">
 			<div class="input-group">
 				<div class="input-group-addon"><i class="fa fa-key"></i></div>
-				<input type="password" name="pass" required class = "form-control">
+				<input type="password" name="pass" class = "form-control">
 			</div>
 			</div>
 			</div>
 
 			<div class="form-group">
-			<label class="col-lg-5 control-label">Confirm Password</label>
+			<label class="col-lg-5 control-label">Confirm Password*</label>
 			<div class="col-lg-3">
 			<div class="input-group">
 				<div class="input-group-addon"><i class="fa fa-key"></i></div>
-				<input type="password" name="confPass" required class = "form-control">
+				<input type="password" name="confPass" class = "form-control">
 			</div>
 			</div>
 			</div>
@@ -69,21 +69,21 @@
 			<div class="form-group">
 			<label class="col-lg-5 control-label">Room Number</label>
 			<div class="col-lg-3">
-				<input type="input" name="room" required class = "form-control">
+				<input type="input" name="room" class = "form-control">
 			</div>
 			</div>
 
 			<div class="form-group">
 			<label class="col-lg-5 control-label">Enrollment Number</label>
 			<div class="col-lg-3">
-				<input type="input" name="enrNo" required class = "form-control">
+				<input type="input" name="enrNo" class = "form-control">
 			</div>
 			</div>
 
 			<div class="form-group">
 			<label class="col-lg-5 control-label">Year</label>
 			<div class="col-lg-3">
-				<input type="input" name="year" required class = "form-control">
+				<input type="input" name="year" class = "form-control">
 			</div>
 			</div>
 
@@ -93,6 +93,13 @@
 				<input type="submit" class="form-control btn btn-success" value = "Sign Up">
 			</div>
 			</div>
+			<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6Le7XvASAAAAAM4AdJMpfSZRgaoatdc23bJblwNY"></script>
+		    <noscript>
+		       <iframe src="http://www.google.com/recaptcha/api/noscript?k=6Le7XvASAAAAAM4AdJMpfSZRgaoatdc23bJblwNY" height="300" width="500" frameborder="0"></iframe><br>
+		       <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+		       </textarea>
+		       <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+		    </noscript>
 		</form>
 	</div>
 	{% endblock %}
