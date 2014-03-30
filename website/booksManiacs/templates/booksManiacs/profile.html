@@ -46,7 +46,7 @@
 						{% for item in buyerOf %}
 							<li class="buySellItem">
 								{{ item.name }}
-								<a href="#" class="btn btn-danger btn-xs"><i class = "fa fa-minus-circle"></i> remove</a>
+								<a href="/booksManiacs/removeBuy/{{ item.id }}/" class="btn btn-danger btn-xs"><i class = "fa fa-minus-circle"></i> remove</a>
 							</li>
 						{% endfor %}
 						</ul>

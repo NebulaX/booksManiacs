@@ -23,7 +23,10 @@
 				{% if req_items %}
 					<ul>
 					{% for item in req_items %}
-						<li class="itemRow">{{ item.name }} - {{ item.edition }}
+						<li class="itemRow">{{ item.name }} - {{ item.edition }}<br />
+							{% if item.other_details != "" %}
+							Other details - {{ item.other_details }}
+							{% endif %}
 							{% if name %}
 								<a href="/booksManiacs/buy/{{ item.id }}/"><i class="fa fa-shopping-cart"></i> Buy</a>
 							{% endif %}

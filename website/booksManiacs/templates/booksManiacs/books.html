@@ -78,7 +78,9 @@
 				</div>
 			</div>
 		{% endif %}
-
+		{% if messageString %}
+			{{ messageString }}
+		{% endif %}
 	{% endblock %}
 
 	{% block endStaticFiles %}
