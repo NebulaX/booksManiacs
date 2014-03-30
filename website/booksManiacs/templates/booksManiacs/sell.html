@@ -1,21 +1,40 @@
 <html>
 	<head>
+		<meta charset="UTF-8">
 		<title>
 		</title>
+		{% load staticfiles %}
+		<script type="text/javascript" src="{% static 'booksManiacs/js/jquery-1.9.1.js' %}"></script>
+		<script type="text/javascript" src="{% static 'booksManiacs/js/jquery-ui-1.10.4.js' %}"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+		<script type="text/javascript" >
+			console.log("sdf");
+			$(function() {
+				var availableBooks = [];
+				{% for book in allBooks %}
+					availableBooks.push("{{ book }}");
+					console.log("{{ book }}");
+				{% endfor %}
+				$( "#authors" ).autocomplete({
+					source: availableBooks,
+				});
+			});
+		</script>
 	</head>
 	<body>
 		<div>
 			<form action="" method="POST">
 				{% csrf_token %}
 				<label>book author:</label>
-				<select name="author">
-					<option value="null"> --------  </option>
+				<!-- <select name="author">
+					<option value="null"> - - - - - - - -  </option>
 					{% for book in allBooks %}
 						<option value="{{ book.author }}">{{ book.author }}</option>
 					{% endfor %}
-				</select>
-				<label>edition:</label><input type="input" name="edition">
-				<label>other details:</label><input type="textarea" name="other">
+				</select> -->
+				<input id="authors" name="author">
+				<label>edition:</label><input type="text" name="edition">
+				<label>other details:</label><textarea name="other"></textarea>
 				<input type="submit">
 			</form>
 		</div>
@@ -25,3 +44,5 @@
 			{% endif %}
 		</div>
 	</body>
+	<script type="text/javascript">
+	</script>
