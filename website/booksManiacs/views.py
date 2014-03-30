@@ -3,7 +3,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 # from django.template import RequestContext, loader
-import unicodedata
 
 from booksManiacs.models import Book, Item, Profile
 from recaptcha.client import captcha
@@ -34,7 +33,7 @@ def items(request, book_author):
 			data = {'req_items' : req_items, 'book_author' : book_author, 'exist' : exist}
 		return render(request, 'booksManiacs/items.html', data)
 	else:
-		return HttpResponse("sorry there is no such book. you have reached the wrong page.")
+		return HttpResponse("sorry there is no such book. you have reached the wrong page.<br /><a href="/booksManiacs/">home</a>")
 		#404page
 
 def login(request):
@@ -179,5 +178,21 @@ def password(request):
 				return HttpResponse("entered wrong password")
 		else:
 			return render(request, 'booksManiacs/password.html')
+	else:
+		return HttpResponseRedirect("/booksManiacs/")
+
+def removeBuy(request, bookId):
+	if request.session.get('user'):
+		buyer = request.session.get('user')
+		exist = Item.objects.filter(pk=bookId).count()
+		if exist:
+			p = Item.objects.get(pk=bookId)
+			p.buyer = None
+			p.buy_request = 0
+			p.save()
+			messageString = "Your request has been registered.The book has been removed from your buy list"
+			return HttpResponseRedirect("/booksManiacs/profile/", {'messageString': messageString})
+		else:
+			return HttpResponseRedirect("/booksManiacs/")
 	else:
 		return HttpResponseRedirect("/booksManiacs/")

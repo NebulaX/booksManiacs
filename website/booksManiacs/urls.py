@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 	url(r'^buy/(?P<bookId>\d+)/$', views.buy, name='buy'),
 	url(r'^sell/$', views.sell, name='sell'),
 	url(r'^profile/$', views.profile, name='profile'),
-	url(r'^password/$', views.password, name='password')
+	url(r'^password/$', views.password, name='password'),
+	url(r'^removeBuy/(?P<bookId>\d+)/$', views.removeBuy, name='removeBuy'),
 	# url(r'^/$', views., name=''),
 )
