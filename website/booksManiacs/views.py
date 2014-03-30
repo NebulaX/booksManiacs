@@ -3,6 +3,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 # from django.template import RequestContext, loader
+import unicodedata
 
 from booksManiacs.models import Book, Item, Profile
 from recaptcha.client import captcha
@@ -138,8 +139,13 @@ def sell(request):
 			b.save()
 			return HttpResponseRedirect("/booksManiacs/")
 	else:
-		allBooks = Book.objects.order_by('author')
-		return render(request, 'booksManiacs/sell.html', {'allBooks': allBooks})
+		allBooks = Book.objects.values_list('author', flat=True).order_by('author')
+		authorsList = []
+		for book in allBooks:
+			authorsList.append(str(book))
+			# book = unicodedata.normalize('NFKD', book).encode('ascii','ignore')
+		print authorsList
+		return render(request, 'booksManiacs/sell.html', {'allBooks': authorsList})
 
 def profile(request):
 	if request.session.get('user'):
