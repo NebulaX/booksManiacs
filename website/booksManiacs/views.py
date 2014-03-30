@@ -132,12 +132,14 @@ def sell(request):
 			return render(request, 'booksManiacs/sell.html', {'allBooks': allBooks, 'errorString': errorString})
 		else:
 			b = Book.objects.get(author=author)
+			print author
 			seller = request.session.get('user')
+			print seller
 			p = Profile.objects.get(email=seller)
 			i = Item.objects.create(name = b, edition = edition, seller = p, other_details = other)
 			b.avail_count += 1
 			b.save()
-			return HttpResponseRedirect("/booksManiacs/")
+			return HttpResponseRedirect("/booksManiacs/sell/")
 	else:
 		allBooks = Book.objects.values_list('author', flat=True).order_by('author')
 		authorsList = []
