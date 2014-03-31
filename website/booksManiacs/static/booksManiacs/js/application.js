@@ -1,5 +1,5 @@
 $(document).ready(function (){
-	$("a").tooltip();
+	$("#headerContent a").tooltip();
 });
 
 
