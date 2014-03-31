@@ -6,6 +6,24 @@
 		Add a book | booksManiacs
 	{% endblock %}
 
+	{% block staticFiles %}
+		<!-- autocomplete function  -->
+		<script type="text/javascript">
+			console.log("sdf");
+			$(function() {
+				var availableBooks = [];
+				{% for book in allBooks %}
+					availableBooks.push("{{ book }}");
+					console.log("{{ book }}");
+				{% endfor %}
+				console.log(availableBooks)
+				$( "#authors" ).autocomplete({
+					source: availableBooks,
+				});
+			});
+		</script>
+	{% endblock %}
+
 	{% block container %}
 	<h1 class="form-title">Add a book</h1>
 	<hr>
@@ -50,20 +68,5 @@
 
 		</form>
 	</div>
-
-	<!-- ---------------------------------------- -->
-	<script type="text/javascript" >
-		console.log("sdf");
-		$(function() {
-			var availableBooks = [];
-			{% for book in allBooks %}
-				availableBooks.push("{{ book }}");
-				console.log("{{ book }}");
-			{% endfor %}
-			$( "#authors" ).autocomplete({
-				source: availableBooks,
-			});
-		});
-	</script>
 
 	{% endblock %}
