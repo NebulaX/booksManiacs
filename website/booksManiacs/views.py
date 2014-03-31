@@ -3,6 +3,9 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 # from django.template import RequestContext, loader
+from django.core.mail import send_mail, EmailMultiAlternatives
+import string
+import random
 
 from booksManiacs.models import Book, Item, Profile
 from recaptcha.client import captcha
@@ -40,7 +43,6 @@ def login(request):
 	if 'user' in request.session:
 		name = request.session['user']
 		return HttpResponseRedirect("/booksManiacs/")
-
 	else:
 		if 'user' in request.POST:
 			email = request.POST['user']
@@ -57,6 +59,7 @@ def login(request):
 			else:
 				return HttpResponse("this id is not registered on our site")
 		else:
+			# sendEmail()
 			return render(request, 'booksManiacs/login.html')
 
 
@@ -81,7 +84,7 @@ def signup(request):
 			room        = request.POST['room']
 			enrNo       = request.POST['enrNo']
 			year        = request.POST['year']
-			# other checks
+			# if makeValidation():
 			if password == confirmPass:
 				response = captcha.submit(  
 					request.POST.get('recaptcha_challenge_field'),
@@ -90,6 +93,7 @@ def signup(request):
 					request.META['REMOTE_ADDR'],)
 				if response.is_valid:
 					p = Profile.objects.create(name = name, email = email, password = password, mobile_number = phone, room_number = room, hostel = bhawan, year = year, enrollment_number = enrNo)
+
 					messageString = "you have registered successfully"
 					return render(request, 'booksManiacs/login.html', {'messageString': messageString})
 				else:
@@ -196,3 +200,21 @@ def removeBuy(request, bookId):
 			return HttpResponseRedirect("/booksManiacs/")
 	else:
 		return HttpResponseRedirect("/booksManiacs/")
+
+def idGenerator(size=8):
+	chars=string.ascii_letters + string.digits
+	print chars
+	return ''.join(random.choice(chars) for _ in range(size))
+
+def makeValidation():
+	return true
+
+def sendEmail():
+	code = idGenerator(8)
+	print 'here'
+	subject, from_email, to = 'hello', 'from@example.com', 'aksheshdoshi@gmail.com'
+	text_content = 'This is an important message.'
+	html_content = 'Here is the message.<br /> Here is the code: ' + code + '. Go to this <a href="http://localhost:8000/booksManiacs/">link</a>'
+	msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+	msg.attach_alternative(html_content, "text/html")
+	msg.send()
