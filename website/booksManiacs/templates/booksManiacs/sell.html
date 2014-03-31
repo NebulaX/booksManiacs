@@ -17,6 +17,12 @@
 	<h1 class="form-title">Add a book</h1>
 	<hr>
 
+	{% if errorString %}
+		<div class = "alert col-md-offset-4 col-md-5">
+			{{ errorString }}
+		</div>
+	{% endif %}
+	
 	<div class = "form-depression">
 		<form action="" method="POST" class = "form-horizontal">
 			{% csrf_token %}
@@ -50,11 +56,6 @@
 			</div>
 
 		</form>
-	</div>
-	<div>
-		{% if errorString %}
-			{{ errorString }}
-		{% endif %}
 	</div>
 
 	<!-- ---------------------------------------- -->
