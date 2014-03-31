@@ -23,6 +23,7 @@
 	position: relative;
 	top: 70pt;
 	bottom: 10pt;
+	overflow-x: hidden;
 }
 
 #footer {
