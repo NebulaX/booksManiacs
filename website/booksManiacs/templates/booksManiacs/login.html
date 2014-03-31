@@ -8,7 +8,7 @@
 	{% else %}
 		<div class="form-depression">
 			{% if errorString %}
-				{{ errorString }}
+				{{ errorString|safe }}
 			{% endif %}
 			<form action="/booksManiacs/login/" method="POST" class = "form-horizontal">
 				{% csrf_token %}

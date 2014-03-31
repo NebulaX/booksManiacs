@@ -57,7 +57,8 @@ def login(request):
 					data = {'errorString': 'your username and password didnt match'}
 					return render(request, 'booksManiacs/login.html', data)
 			else:
-				return HttpResponse("this id is not registered on our site")
+				data = {'errorString': 'This id is not registered. Maybe you wanna <a href="/booksManiacs/signup/">signup</a>'}
+				return render(request, 'booksManiacs/login.html', data)
 		else:
 			# sendEmail()
 			return render(request, 'booksManiacs/login.html')
