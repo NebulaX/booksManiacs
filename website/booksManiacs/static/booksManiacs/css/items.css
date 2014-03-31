@@ -36,17 +36,18 @@
 }
 
 #bookUserDetails {
-	background: rgb(140, 255, 159);
-	border-radius: 8px;
+	background: #277727;
+	color: white;
 	padding: 10px;
-	/* margin-bottom: 10px; */
-	box-shadow: 0px 0px 10px;
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
 #bookError {
-	background: rgb(255, 116, 116);
-	border-radius: 8px;
+	background: #de4343;
+	color: white;
 	padding: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
 	margin-bottom: 10px;
-	box-shadow: 0px 0px 10px;
 }

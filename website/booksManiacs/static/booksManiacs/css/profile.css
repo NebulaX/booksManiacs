@@ -3,7 +3,6 @@
 	background: white;
 	border-radius: 2px;
 	box-shadow: 0px 0px 10px;
-	/*margin-left: 20px;*/
 }
 
 .sellBuyWrap ul {
@@ -51,8 +50,8 @@
 
 .buySellWarn {
 	padding: 10px;
-	background: rgb(255, 86, 86);
 	color: white;
+	background-color: #de4343;
 }
 
 #addBook, #buyBook {

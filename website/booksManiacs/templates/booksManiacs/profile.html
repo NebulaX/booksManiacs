@@ -26,14 +26,14 @@
 					{% if sellerOf %}
 						<ul>
 						{% for item in sellerOf %}
-							<li class="buySellItem">
+							<li class="backStripes buySellItem">
 								{{ item.name }}
 								<a href="/booksManiacs/removeBook/{{ item.id }}/" class="btn btn-danger btn-xs"><i class = "fa fa-minus-circle"></i> remove</a>
 							</li>
 						{% endfor %}
 						</ul>
 					{% else %}
-						<div class="buySellWarn">You have not added any book for sale !</div>
+						<div class="backStripes buySellWarn">You have not added any book for sale !</div>
 					{% endif %}
 					<a href="/booksManiacs/sell/" class="btn btn-primary btn-xs" id = "addBook"><i class = "fa fa-plus"></i> add book</a>
 				</div>
@@ -48,14 +48,14 @@
 					{% if buyerOf %}
 						<ul>
 						{% for item in buyerOf %}
-							<li class="buySellItem">
+							<li class="backStripes buySellItem">
 								{{ item.name }}
 								<a href="/booksManiacs/removeBuy/{{ item.id }}/" class="btn btn-danger btn-xs"><i class = "fa fa-minus-circle"></i> remove</a>
 							</li>
 						{% endfor %}
 						</ul>
 					{% else %}
-						<div class ="buySellWarn">You have not requested to buy any book !</div>
+						<div class ="backStripes buySellWarn">You have not requested to buy any book !</div>
 						<a href="/booksManiacs/" class = "btn btn-primary btn-xs" id = "buyBook"><i class = "fa fa-shopping-cart"></i> buy a book</a>
 					{% endif %}
 				</div>
