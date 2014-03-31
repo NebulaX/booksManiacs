@@ -32,12 +32,14 @@
 					<a href = "/booksManiacs/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Home">
 						<i class = "fa fa-home fa-2x"></i>
 					</a>
-					<a href="/booksManiacs/profile/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Profile">
-						<i class = "fa fa-user fa-2x"></i>
-					</a>
-					<a href="/booksManiacs/sell/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Sell">
-						<i class = "fa fa-shopping-cart fa-2x"></i>
-					</a>
+					{% if request.session.user %}
+						<a href="/booksManiacs/profile/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Profile">
+							<i class = "fa fa-user fa-2x"></i>
+						</a>
+						<a href="/booksManiacs/sell/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Sell">
+							<i class = "fa fa-shopping-cart fa-2x"></i>
+						</a>
+					{% endif %}
 					<button class = "btn btn-success btn-lg" data-toggle="modal" data-target = "#myModal">
 						<i class = "fa fa-info-circle fa-2x"></i>
 					</button>
