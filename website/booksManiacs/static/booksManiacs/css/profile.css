@@ -18,10 +18,6 @@
 	background: rgb(201, 246, 246);
 }
 
-.sellBuyWrap ul li:nth-child(2n) {
-	background: rgb(186, 255, 165);
-}
-
 .sellBuyWrap li>a {
 	float: right;
 }
