@@ -45,13 +45,17 @@ def login(request):
 		return HttpResponseRedirect("/booksManiacs/")
 	else:
 		if 'user' in request.POST:
-			email = request.POST['user']
-			userExist = Profile.objects.filter(email=email).count()
+			email     = request.POST['user']
+			userExist = Profile.objects.filter(email=email).exists()
 			if userExist:
+				user          = Profile.objects.get(email=email)
+				userName      = user.name
+				userPassword  = user.password
+				userEmail     = user.email
 				loginPassword = request.POST['password']
-				realPassword = Profile.objects.get(email=email).password
-				if loginPassword == realPassword:
-					request.session['user'] = email
+				if loginPassword == userPassword:
+					request.session['user'] = userEmail
+					request.session['name'] = userName
 					return HttpResponseRedirect("/booksManiacs/")
 				else:
 					data = {'errorString': 'your username and password didnt match'}
