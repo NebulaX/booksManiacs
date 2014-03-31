@@ -63,7 +63,6 @@ def login(request):
 			# sendEmail()
 			return render(request, 'booksManiacs/login.html')
 
-
 def logout(request):
 	if 'user' in request.session:
 		del request.session['user']
@@ -198,12 +197,26 @@ def removeBuy(request, bookId):
 			p.buyer = None
 			p.buy_request = 0
 			p.save()
-			messageString = "Your request has been registered.The book has been removed from your buy list"
+			messageString = "The book has been removed from your buy list"
 			return HttpResponseRedirect("/booksManiacs/profile/", {'messageString': messageString})
 		else:
-			return HttpResponseRedirect("/booksManiacs/")
+			return HttpResponseRedirect("/booksManiacs/profile/")
 	else:
-		return HttpResponseRedirect("/booksManiacs/")
+		return HttpResponseRedirect("/booksManiacs/login/")
+
+def removeBook(request, bookId):
+	if request.session.get('user'):
+		seller = request.session.get('user')
+		exist = Item.objects.filter(pk=bookId).count()
+		if exist:
+			p = Item.objects.get(pk=bookId)
+			p.delete()
+			messageString = "The book has been removed from your sell items"
+			return HttpResponseRedirect("/booksManiacs/profile/", {'messageString': messageString})
+		else:
+			return HttpResponseRedirect("/booksManiacs/profile/")
+	else:
+		return HttpResponseRedirect("/booksManiacs/login/")
 
 def idGenerator(size=8):
 	chars=string.ascii_letters + string.digits

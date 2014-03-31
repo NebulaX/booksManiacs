@@ -24,7 +24,7 @@
 						{% for item in sellerOf %}
 							<li class="buySellItem">
 								{{ item.name }}
-								<a href="#" class="btn btn-danger btn-xs"><i class = "fa fa-minus-circle"></i> remove</a>
+								<a href="/booksManiacs/removeBook/{{ item.id }}/" class="btn btn-danger btn-xs"><i class = "fa fa-minus-circle"></i> remove</a>
 							</li>
 						{% endfor %}
 						</ul>
@@ -51,8 +51,8 @@
 						{% endfor %}
 						</ul>
 					{% else %}
-						<div class ="buySellWarn">You have not requested to buy any book.</div>
-						<a href="/booksManiacs/" class = "btn btn-primary btn-xs" id = "buyBook"><i class = "fa fa-shopping-cart"></i> buy here</a>
+						<div class ="buySellWarn">You have not requested to buy any book !</div>
+						<a href="/booksManiacs/">wanna add one ?</a>
 					{% endif %}
 				</div>
 			</div>
