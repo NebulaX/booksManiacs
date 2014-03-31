@@ -152,3 +152,8 @@ body {
      position: relative;
      right: 20px;
 }
+
+.alert a {
+	color: white;
+	text-decoration: underline;
+}
