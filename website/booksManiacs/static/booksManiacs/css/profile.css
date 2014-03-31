@@ -54,7 +54,7 @@
 	background: rgb(255, 107, 24);
 }
 
-#addBook {
+#addBook, #buyBook {
 	float: right;
 	margin: 10px;
 }
