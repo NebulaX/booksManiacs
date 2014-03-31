@@ -118,39 +118,42 @@ def buy(request,bookId):
 			messageString = "Your request has been registered. We would be contacting you soon for the transaction."
 			return HttpResponseRedirect("/booksManiacs/", {'messageString': messageString})
 		else:
-			return HttpResponseRedirect("/booksManiacs/")
+			return HttpResponseRedirect('/booksManiacs/')
 	else:
-		return HttpResponseRedirect("/booksManiacs/")
+		return HttpResponseRedirect('/booksManiacs/')
 	# return render(request, 'booksManiacs/buy.html')
 
 def sell(request):
-	if 'author' in request.POST:
-		author    = request.POST['author']
-		edition   = request.POST['edition']
-		other     = request.POST['other']
-		# other checks
-		if author == "--------":
-			errorString = "plz fill in a valid author"
-			allBooks = Book.objects.order_by('author')
-			return render(request, 'booksManiacs/sell.html', {'allBooks': allBooks, 'errorString': errorString})
+	if request.session.get('user'):
+		if 'author' in request.POST:
+			author    = request.POST['author']
+			edition   = request.POST['edition']
+			other     = request.POST['other']
+			# other checks
+			if author == "--------":
+				errorString = "plz fill in a valid author"
+				allBooks = Book.objects.order_by('author')
+				return render(request, 'booksManiacs/sell.html', {'allBooks': allBooks, 'errorString': errorString})
+			else:
+				b = Book.objects.get(author=author)
+				print author
+				seller = request.session.get('user')
+				print seller
+				p = Profile.objects.get(email=seller)
+				i = Item.objects.create(name = b, edition = edition, seller = p, other_details = other)
+				b.avail_count += 1
+				b.save()
+				return HttpResponseRedirect("/booksManiacs/sell/")
 		else:
-			b = Book.objects.get(author=author)
-			print author
-			seller = request.session.get('user')
-			print seller
-			p = Profile.objects.get(email=seller)
-			i = Item.objects.create(name = b, edition = edition, seller = p, other_details = other)
-			b.avail_count += 1
-			b.save()
-			return HttpResponseRedirect("/booksManiacs/sell/")
+			allBooks = Book.objects.values_list('author', flat=True).order_by('author')
+			authorsList = []
+			for book in allBooks:
+				authorsList.append(str(book))
+				# book = unicodedata.normalize('NFKD', book).encode('ascii','ignore')
+			print authorsList
+			return render(request, 'booksManiacs/sell.html', {'allBooks': authorsList})
 	else:
-		allBooks = Book.objects.values_list('author', flat=True).order_by('author')
-		authorsList = []
-		for book in allBooks:
-			authorsList.append(str(book))
-			# book = unicodedata.normalize('NFKD', book).encode('ascii','ignore')
-		print authorsList
-		return render(request, 'booksManiacs/sell.html', {'allBooks': authorsList})
+		return HttpResponseRedirect('/booksManiacs/')
 
 def profile(request):
 	if request.session.get('user'):
