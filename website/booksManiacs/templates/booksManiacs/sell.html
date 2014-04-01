@@ -1,28 +1,11 @@
 {% extends "base.html" %}
-	
+
 	{% load staticfiles %}
 
 	{% block title %}
 		Add a book | booksManiacs
 	{% endblock %}
 
-	{% block staticFiles %}
-		<!-- autocomplete function  -->
-		<script type="text/javascript">
-			console.log("sdf");
-			$(function() {
-				var availableBooks = [];
-				{% for book in allBooks %}
-					availableBooks.push("{{ book }}");
-					console.log("{{ book }}");
-				{% endfor %}
-				console.log(availableBooks)
-				$( "#authors" ).autocomplete({
-					source: availableBooks,
-				});
-			});
-		</script>
-	{% endblock %}
 
 	{% block container %}
 	<h1 class="form-title">Add a book</h1>
@@ -41,7 +24,7 @@
 			<div class="form-group">
 			<label class="col-lg-5 control-label">Book Author</label>
 			<div class="col-lg-3">
-				<input type="input" name="author" class = "form-control">
+				<input type="input" name="author" id="author" class = "form-control">
 			</div>
 			</div>
 
@@ -69,4 +52,21 @@
 		</form>
 	</div>
 
+	{% endblock %}
+	{% block staticFiles %}
+		<!-- autocomplete function  -->
+		<script type="text/javascript">
+			console.log("sdf");
+			$(function() {
+				var availableBooks = [];
+				{% for book in allBooks %}
+					availableBooks.push("{{ book }}");
+					console.log("{{ book }}");
+				{% endfor %}
+				console.log(availableBooks)
+				$( "#author" ).autocomplete({
+					source: availableBooks,
+				});
+			});
+		</script>
 	{% endblock %}
