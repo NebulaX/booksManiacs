@@ -36,7 +36,7 @@ def items(request, book_author):
 			data = {'req_items' : req_items, 'book_author' : book_author, 'exist' : exist}
 		return render(request, 'booksManiacs/items.html', data)
 	else:
-		return HttpResponse("sorry there is no such book. you have reached the wrong page.<br /><a href="/booksManiacs/">home</a>")
+		return HttpResponse('sorry there is no such book. you have reached the wrong page.<br /><a href="/booksManiacs/">home</a>')
 		#404page
 
 def login(request):
@@ -90,7 +90,7 @@ def signup(request):
 			year        = request.POST['year']
 			# if makeValidation():
 			if password == confirmPass:
-				response = captcha.submit(  
+				response = captcha.submit(
 					request.POST.get('recaptcha_challenge_field'),
 					request.POST.get('recaptcha_response_field'),
 					'6Le7XvASAAAAAKk5cQcHOwxBRNjKBl49I_yRw2ym',
