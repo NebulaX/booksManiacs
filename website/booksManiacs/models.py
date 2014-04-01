@@ -18,10 +18,17 @@ class Student_Year(models.Model):
 
 class Hostel(models.Model):
 	HOSTEL_CHOICES = (
-		('clb','Cautley Bhawan'),
-		('rkb','RadhaKrishnan Bhawan'),
+		('ctb','Cautley Bhawan'),
+		('rkb','Radhakrishnan Bhawan'),
 		('rb','Rajeev Bhawan'),
 		('rjb','Rajendra Bhawan'),
+		('gnb' , 'Ganga Bhawan'),
+		('rvb' , 'Ravindra Bhawan'),
+		('gvb' , 'Govind Bhawan'),
+		('jwb' , 'Jawahar Bhawan'),
+		('kab' , 'Kasturba Bhawan'),
+		('srb' , 'Sarojini Bhawan'),
+		('azb' , 'Azad Bhawan')		
 		# add all bhawans
 	)
 
