@@ -1,3 +1,0 @@
-function coverUp(){
-	$("#cover").fadeOut();
-}

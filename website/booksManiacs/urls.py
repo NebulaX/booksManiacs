@@ -15,5 +15,6 @@ urlpatterns = patterns('',
 	url(r'^profile/$', views.profile, name='profile'),
 	url(r'^password/$', views.password, name='password'),
 	url(r'^removeBuy/(?P<bookId>\d+)/$', views.removeBuy, name='removeBuy'),
+	url(r'^removeBook/(?P<bookId>\d+)/$', views.removeBook, name='removeBook'),
 	# url(r'^/$', views., name=''),
 )

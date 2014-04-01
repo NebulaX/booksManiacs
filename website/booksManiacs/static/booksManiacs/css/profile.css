@@ -3,7 +3,6 @@
 	background: white;
 	border-radius: 2px;
 	box-shadow: 0px 0px 10px;
-	/*margin-left: 20px;*/
 }
 
 .sellBuyWrap ul {
@@ -17,10 +16,6 @@
 
 .sellBuyWrap ul li:nth-child(2n+1) {
 	background: rgb(201, 246, 246);
-}
-
-.sellBuyWrap ul li:nth-child(2n) {
-	background: rgb(186, 255, 165);
 }
 
 .sellBuyWrap li>a {
@@ -51,15 +46,17 @@
 
 .buySellWarn {
 	padding: 10px;
-	background: rgb(255, 107, 24);
+	color: white;
+	background-color: #de4343;
 }
 
-#addBook {
+#addBook, #buyBook {
 	float: right;
 	margin: 10px;
 }
 
 #editProfile {
+	margin-top: 11px;
 	text-align: right;
 	padding-right: 20px;
 }

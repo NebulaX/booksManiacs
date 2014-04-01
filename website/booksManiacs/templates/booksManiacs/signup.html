@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+	
+	{% block title %}
+		Sign Up | booksManiacs
+	{% endblock %}
+
 	{% block container %}
 	<h1 class="form-title">Sign Up</h1>
 	<hr>
@@ -73,7 +78,7 @@
 			</div>
 			</div>
 
-			<div class="form-group">
+			<!-- <div class="form-group">
 			<label class="col-lg-5 control-label">Enrollment Number</label>
 			<div class="col-lg-3">
 				<input type="input" name="enrNo" class = "form-control">
@@ -85,7 +90,19 @@
 			<div class="col-lg-3">
 				<input type="input" name="year" class = "form-control">
 			</div>
-			</div>
+			</div> -->
+
+			<div class = "form-group" id = "captcha">
+				<div class = "col-lg-offset-5 col-lg-3">
+					<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6Le7XvASAAAAAM4AdJMpfSZRgaoatdc23bJblwNY"></script>
+				    <noscript>
+				       <iframe src="http://www.google.com/recaptcha/api/noscript?k=6Le7XvASAAAAAM4AdJMpfSZRgaoatdc23bJblwNY" height="300" width="500" frameborder="0"></iframe><br>
+				       <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+				       </textarea>
+				       <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+				    </noscript>
+			    </div>
+		    </div>
 
 			<div class="form-group">
 			<label class="col-lg-5 control-label"></label>
@@ -93,13 +110,7 @@
 				<input type="submit" class="form-control btn btn-success" value = "Sign Up">
 			</div>
 			</div>
-			<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6Le7XvASAAAAAM4AdJMpfSZRgaoatdc23bJblwNY"></script>
-		    <noscript>
-		       <iframe src="http://www.google.com/recaptcha/api/noscript?k=6Le7XvASAAAAAM4AdJMpfSZRgaoatdc23bJblwNY" height="300" width="500" frameborder="0"></iframe><br>
-		       <textarea name="recaptcha_challenge_field" rows="3" cols="40">
-		       </textarea>
-		       <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
-		    </noscript>
+
 		</form>
 	</div>
 	{% endblock %}

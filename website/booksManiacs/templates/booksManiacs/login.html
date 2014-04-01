@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+	
+	{% block title %}
+		Login | booksManiacs
+	{% endblock %}
+
 	{% block container %}
 	<h1 class="form-title">Sign In</h1>
 	<hr>
@@ -8,7 +13,9 @@
 	{% else %}
 		<div class="form-depression">
 			{% if errorString %}
-				{{ errorString }}
+				<div class = "alert col-md-offset-4 col-md-5">
+					{{ errorString|safe }}
+				</div>
 			{% endif %}
 			<form action="/booksManiacs/login/" method="POST" class = "form-horizontal">
 				{% csrf_token %}
@@ -17,7 +24,7 @@
 				<div class="col-lg-3">
 				<div class="input-group">
 					<div class="input-group-addon"><i class="fa fa-user"></i></div>
-					<input type="email" name="user" class = "form-control">
+					<input type="email" name="user" class = "form-control" autofocus="autofocus">
 				</div>
 				</div>
 				</div>

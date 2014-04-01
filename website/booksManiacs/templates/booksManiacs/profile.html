@@ -2,13 +2,17 @@
 
 	{% load staticfiles %}
 
+	{% block title %}
+		Profile | booksManiacs
+	{% endblock %}
+
 	{% block staticFiles %}
 		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/profile.css' %}" />
 	{% endblock %}
 
 	{% block container %}
 		<div id = "editProfile">
-			<a href="#" class="btn btn-primary"><i class = "fa fa-user"></i> Edit Profile</a>
+			<a href="/booksManiacs/password/" class="btn btn-sm btn-warning"><i class = "fa fa-key"></i> Change Password</a>
 		</div>
 		<hr>
 
@@ -22,14 +26,14 @@
 					{% if sellerOf %}
 						<ul>
 						{% for item in sellerOf %}
-							<li class="buySellItem">
+							<li class="backStripes buySellItem">
 								{{ item.name }}
-								<a href="#" class="btn btn-danger btn-xs"><i class = "fa fa-minus-circle"></i> remove</a>
+								<a href="/booksManiacs/removeBook/{{ item.id }}/" class="btn btn-danger btn-xs"><i class = "fa fa-minus-circle"></i> remove</a>
 							</li>
 						{% endfor %}
 						</ul>
 					{% else %}
-						<div class="buySellWarn">You have not added any book for sale !</div>
+						<div class="backStripes buySellWarn">You have not added any book for sale !</div>
 					{% endif %}
 					<a href="/booksManiacs/sell/" class="btn btn-primary btn-xs" id = "addBook"><i class = "fa fa-plus"></i> add book</a>
 				</div>
@@ -44,15 +48,15 @@
 					{% if buyerOf %}
 						<ul>
 						{% for item in buyerOf %}
-							<li class="buySellItem">
+							<li class="backStripes buySellItem">
 								{{ item.name }}
 								<a href="/booksManiacs/removeBuy/{{ item.id }}/" class="btn btn-danger btn-xs"><i class = "fa fa-minus-circle"></i> remove</a>
 							</li>
 						{% endfor %}
 						</ul>
 					{% else %}
-						<div class ="buySellWarn">You have not requested to buy any book.</div>
-						<a href="/booksManiacs/">wanna add one ?</a>
+						<div class ="backStripes buySellWarn">You have not requested to buy any book !</div>
+						<a href="/booksManiacs/" class = "btn btn-primary btn-xs" id = "buyBook"><i class = "fa fa-shopping-cart"></i> buy a book</a>
 					{% endif %}
 				</div>
 			</div>

@@ -14,6 +14,10 @@
 		<script type="text/javascript" src="{% static 'booksManiacs/js/bootstrap.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'booksManiacs/js/masonry.js' %}"></script>
 		<script type="text/javascript" src="{% static 'booksManiacs/js/application.js' %}"></script>
+		<script type="text/javascript" src="{% static 'booksManiacs/js/jquery-1.9.1.js' %}"></script>
+		<script type="text/javascript" src="{% static 'booksManiacs/js/jquery-ui-1.10.4.js' %}"></script>
+
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 
 		{% block staticFiles %}
 		{% endblock %}
@@ -25,13 +29,18 @@
 			<div id = "headerContent">
 				<!-- The three nav buttons -->
 				<div id = "navData" class = "btn-group">
-					<a href = "/booksManiacs/" class = "btn btn-success btn-lg">
+					<a href = "/booksManiacs/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Home">
 						<i class = "fa fa-home fa-2x"></i>
 					</a>
-					<a href="/booksManiacs/profile/" class = "btn btn-success btn-lg">
-						<i class = "fa fa-user fa-2x"></i>
-					</a>
-					<button class = "btn btn-success btn-lg" data-toggle = "modal" data-target = "#myModal">
+					{% if request.session.user %}
+						<a href="/booksManiacs/profile/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Profile">
+							<i class = "fa fa-user fa-2x"></i>
+						</a>
+						<a href="/booksManiacs/sell/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Sell">
+							<i class = "fa fa-shopping-cart fa-2x"></i>
+						</a>
+					{% endif %}
+					<button class = "btn btn-success btn-lg" data-toggle="modal" data-target = "#myModal">
 						<i class = "fa fa-info-circle fa-2x"></i>
 					</button>
 				</div>
@@ -41,8 +50,8 @@
 				{% if request.session.user %}
 					<div class = "btn-group">
 						<!-- Set URL for User Profile here @akshesh-->
-						<a href = "#" class = "btn btn-info">
-							<i class = "fa fa-user"></i> {{ request.session.user }}
+						<a href = "/booksManiacs/profile/" class = "btn btn-info">
+							<i class = "fa fa-user"></i> {{ request.session.name }}
 						</a>
 
 						<a href="/booksManiacs/logout/" class = "btn btn-danger">
@@ -68,14 +77,6 @@
 						</div>
 					</form>
 
-					{% if messageString %}
-						{{ messageString }}
-					{% endif %}
-
-					{% if errorString %}
-						{{ errorString }}
-					{% endif %}
-
 				{% endif %}
 				</div>
 			</div>
@@ -90,6 +91,24 @@
 			<a href = "http://fb.com/" target="_blank"><i class = "fa fa-facebook fa-lg"></i></a> <a href = "http://www.twitter.com" target = "_blank"><i class = "fa fa-twitter fa-lg"></i></a> <a href= "mailto:admin@gmail.com"><i class = "fa fa-envelope fa-lg"></i></a>
 		</div>
 		<div id = "footer">
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel"><i class = "fa fa-book"></i> booksManiacs</h4>
+		      </div>
+		      <div class="modal-body">
+		        Lorem ipsum
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
 		</div>
 	</body>
 	{% block endStaticFiles %}
