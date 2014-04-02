@@ -7,20 +7,20 @@ from django.core.mail import send_mail, EmailMultiAlternatives
 import string
 import random
 
-from booksManiacs.models import Book, Item, Profile
+from bookManiacs.models import Book, Item, Profile
 from recaptcha.client import captcha
 
 def home(request):
 	if request.session.get('user'):
 		name = request.session.get('user')
-		return render(request, 'booksManiacs/home.html', {'name': name})
+		return render(request, 'bookManiacs/home.html', {'name': name})
 	else:
-		return render(request, 'booksManiacs/home.html')
+		return render(request, 'bookManiacs/home.html')
 
 def books(request):
 	books_available =  Book.objects.all()                 # books with avail_count!=0
 	data = {'books_available': books_available}
-	return render(request, 'booksManiacs/books.html', data)
+	return render(request, 'bookManiacs/books.html', data)
 
 def items(request, book_author):
 	exist = Book.objects.filter(author=book_author).count()
@@ -34,15 +34,15 @@ def items(request, book_author):
 		else:
 			req_items = Item.objects.filter(name=book_author)
 			data = {'req_items' : req_items, 'book_author' : book_author, 'exist' : exist}
-		return render(request, 'booksManiacs/items.html', data)
+		return render(request, 'bookManiacs/items.html', data)
 	else:
-		return HttpResponse("sorry there is no such book. you have reached the wrong page.<br /><a href="/booksManiacs/">home</a>")
+		return HttpResponse("sorry there is no such book. you have reached the wrong page.<br /><a href="/bookManiacs/">home</a>")
 		#404page
 
 def login(request):
 	if 'user' in request.session:
 		name = request.session['user']
-		return HttpResponseRedirect("/booksManiacs/")
+		return HttpResponseRedirect("/bookManiacs/")
 	else:
 		if 'user' in request.POST:
 			email     = request.POST['user']
@@ -56,27 +56,27 @@ def login(request):
 				if loginPassword == userPassword:
 					request.session['user'] = userEmail
 					request.session['name'] = userName
-					return HttpResponseRedirect("/booksManiacs/")
+					return HttpResponseRedirect("/bookManiacs/")
 				else:
 					data = {'errorString': 'your username and password didnt match'}
-					return render(request, 'booksManiacs/login.html', data)
+					return render(request, 'bookManiacs/login.html', data)
 			else:
-				data = {'errorString': 'This id is not registered. Maybe you wanna <a href="/booksManiacs/signup/">signup</a>'}
-				return render(request, 'booksManiacs/login.html', data)
+				data = {'errorString': 'This id is not registered. Maybe you wanna <a href="/bookManiacs/signup/">signup</a>'}
+				return render(request, 'bookManiacs/login.html', data)
 		else:
 			# sendEmail()
-			return render(request, 'booksManiacs/login.html')
+			return render(request, 'bookManiacs/login.html')
 
 def logout(request):
 	if 'user' in request.session:
 		del request.session['user']
-		return HttpResponseRedirect("/booksManiacs/")
+		return HttpResponseRedirect("/bookManiacs/")
 	else:
-		return HttpResponse('You have been successfull in finding a broken link..well you are lost<br /><a href="/booksManiacs/">home</a>')
+		return HttpResponse('You have been successfull in finding a broken link..well you are lost<br /><a href="/bookManiacs/">home</a>')
 
 def signup(request):
 	if 'user' in request.session:
-		return HttpResponseRedirect("/booksManiacs/")
+		return HttpResponseRedirect("/bookManiacs/")
 	else:
 		if 'name' in request.POST:
 			name        = request.POST['name']
@@ -99,15 +99,15 @@ def signup(request):
 					p = Profile.objects.create(name = name, email = email, password = password, mobile_number = phone, room_number = room, hostel = bhawan)
 
 					messageString = 'you have registered successfully'
-					return render(request, 'booksManiacs/login.html', {'messageString': messageString})
+					return render(request, 'bookManiacs/login.html', {'messageString': messageString})
 				else:
 					errorString = 'please fill the captcha correctly'
-					return render(request, 'booksManiacs/signup.html', {'errorString': errorString})
+					return render(request, 'bookManiacs/signup.html', {'errorString': errorString})
 			else:
 				errorString = 'your password did not match with the confirm password'
-				return render(request, 'booksManiacs/signup.html', {'errorString': errorString})
+				return render(request, 'bookManiacs/signup.html', {'errorString': errorString})
 		else:
-			return render(request, 'booksManiacs/signup.html')
+			return render(request, 'bookManiacs/signup.html')
 
 def buy(request,bookId):
 	if request.session.get('user'):
@@ -120,12 +120,12 @@ def buy(request,bookId):
 			p.buy_request = 1
 			p.save()
 			messageString = "Your request has been registered. We would be contacting you soon for the transaction."
-			return HttpResponseRedirect("/booksManiacs/", {'messageString': messageString})
+			return HttpResponseRedirect("/bookManiacs/", {'messageString': messageString})
 		else:
-			return HttpResponseRedirect('/booksManiacs/')
+			return HttpResponseRedirect('/bookManiacs/')
 	else:
-		return HttpResponseRedirect('/booksManiacs/')
-	# return render(request, 'booksManiacs/buy.html')
+		return HttpResponseRedirect('/bookManiacs/')
+	# return render(request, 'bookManiacs/buy.html')
 
 def sell(request):
 	if request.session.get('user'):
@@ -137,7 +137,7 @@ def sell(request):
 			if author == "--------":
 				errorString = "plz fill in a valid author"
 				allBooks = Book.objects.order_by('author')
-				return render(request, 'booksManiacs/sell.html', {'allBooks': allBooks, 'errorString': errorString})
+				return render(request, 'bookManiacs/sell.html', {'allBooks': allBooks, 'errorString': errorString})
 			else:
 				b = Book.objects.get(author=author)
 				print author
@@ -147,7 +147,7 @@ def sell(request):
 				i = Item.objects.create(name = b, edition = edition, seller = p, other_details = other)
 				b.avail_count += 1
 				b.save()
-				return HttpResponseRedirect("/booksManiacs/sell/")
+				return HttpResponseRedirect("/bookManiacs/sell/")
 		else:
 			allBooks = Book.objects.values_list('author', flat=True).order_by('author')
 			authorsList = []
@@ -155,9 +155,9 @@ def sell(request):
 				authorsList.append(str(book))
 				# book = unicodedata.normalize('NFKD', book).encode('ascii','ignore')
 			print authorsList
-			return render(request, 'booksManiacs/sell.html', {'allBooks': authorsList})
+			return render(request, 'bookManiacs/sell.html', {'allBooks': authorsList})
 	else:
-		return HttpResponseRedirect('/booksManiacs/')
+		return HttpResponseRedirect('/bookManiacs/')
 
 def profile(request):
 	if request.session.get('user'):
@@ -166,9 +166,9 @@ def profile(request):
 		sellerOf = Item.objects.filter(seller = name)
 		buyerOf = Item.objects.filter(buyer = name)
 		data = {'sellerOf' : sellerOf,'buyerOf' : buyerOf, 'name' : name}
-		return render(request, 'booksManiacs/profile.html', data)
+		return render(request, 'bookManiacs/profile.html', data)
 	else:
-		return HttpResponseRedirect("/booksManiacs/login/")
+		return HttpResponseRedirect("/bookManiacs/login/")
 
 def password(request):
 	if request.session.get('user'):
@@ -184,13 +184,13 @@ def password(request):
 			if oldPass == realPassword:
 				user.password = newPass
 				user.save()
-				return HttpResponseRedirect("/booksManiacs/profile")
+				return HttpResponseRedirect("/bookManiacs/profile")
 			else:
 				return HttpResponse("entered wrong password")
 		else:
-			return render(request, 'booksManiacs/password.html')
+			return render(request, 'bookManiacs/password.html')
 	else:
-		return HttpResponseRedirect("/booksManiacs/")
+		return HttpResponseRedirect("/bookManiacs/")
 
 def removeBuy(request, bookId):
 	if request.session.get('user'):
@@ -202,11 +202,11 @@ def removeBuy(request, bookId):
 			p.buy_request = 0
 			p.save()
 			messageString = "The book has been removed from your buy list"
-			return HttpResponseRedirect("/booksManiacs/profile/", {'messageString': messageString})
+			return HttpResponseRedirect("/bookManiacs/profile/", {'messageString': messageString})
 		else:
-			return HttpResponseRedirect("/booksManiacs/profile/")
+			return HttpResponseRedirect("/bookManiacs/profile/")
 	else:
-		return HttpResponseRedirect("/booksManiacs/login/")
+		return HttpResponseRedirect("/bookManiacs/login/")
 
 def removeBook(request, bookId):
 	if request.session.get('user'):
@@ -216,11 +216,11 @@ def removeBook(request, bookId):
 			p = Item.objects.get(pk=bookId)
 			p.delete()
 			messageString = "The book has been removed from your sell items"
-			return HttpResponseRedirect("/booksManiacs/profile/", {'messageString': messageString})
+			return HttpResponseRedirect("/bookManiacs/profile/", {'messageString': messageString})
 		else:
-			return HttpResponseRedirect("/booksManiacs/profile/")
+			return HttpResponseRedirect("/bookManiacs/profile/")
 	else:
-		return HttpResponseRedirect("/booksManiacs/login/")
+		return HttpResponseRedirect("/bookManiacs/login/")
 
 def idGenerator(size=8):
 	chars=string.ascii_letters + string.digits
@@ -235,7 +235,7 @@ def sendEmail():
 	print 'here'
 	subject, from_email, to = 'hello', 'from@example.com', 'aksheshdoshi@gmail.com'
 	text_content = 'This is an important message.'
-	html_content = 'Here is the message.<br /> Here is the code: ' + code + '. Go to this <a href="http://localhost:8000/booksManiacs/">link</a>'
+	html_content = 'Here is the message.<br /> Here is the code: ' + code + '. Go to this <a href="http://localhost:8000/bookManiacs/">link</a>'
 	msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
 	msg.attach_alternative(html_content, "text/html")
 	msg.send()

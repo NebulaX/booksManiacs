@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 	
 	{% block title %}
-		Login | booksManiacs
+		Login | bookManiacs
 	{% endblock %}
 
 	{% block container %}
@@ -22,7 +22,7 @@
 					{{ messageString|safe }}
 				</div>
 			{% endif %}
-			<form action="/booksManiacs/login/" method="POST" class = "form-horizontal">
+			<form action="/bookManiacs/login/" method="POST" class = "form-horizontal">
 				{% csrf_token %}
 				<div class="form-group">
 				<label class="col-lg-5 control-label">Email</label>

@@ -3,11 +3,11 @@
 	{% load staticfiles %}
 
 	{% block title %}
-		{{ book_author }} | booksManiacs
+		{{ book_author }} | bookManiacs
 	{% endblock %}
 
 	{% block staticFiles %}
-		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/items.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'bookManiacs/css/items.css' %}" />
 	{% endblock %}
 
 	{% block container %}
@@ -17,7 +17,7 @@
 
 		<div class="row">
 			<div class="col-md-3 col-md-offset-2">
-				<img src="{% static 'booksManiacs/images/book.png' %}" class="bookImage">
+				<img src="{% static 'bookManiacs/images/book.png' %}" class="bookImage">
 			</div>
 			<div class="col-md-4 itemDetails">
 				{% if req_items %}
@@ -28,7 +28,7 @@
 							Other details - {{ item.other_details }}
 							{% endif %}
 							{% if name %}
-								<a href="/booksManiacs/buy/{{ item.id }}/"><i class="fa fa-shopping-cart"></i> Buy</a>
+								<a href="/bookManiacs/buy/{{ item.id }}/"><i class="fa fa-shopping-cart"></i> Buy</a>
 							{% endif %}
 						</li>
 					{% endfor %}

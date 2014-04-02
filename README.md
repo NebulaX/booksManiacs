@@ -1,4 +1,4 @@
-booksManiacs
+bookManiacs
 ============
 Instructions:
 ----------------------------
@@ -14,7 +14,7 @@ Source Code of the website built for our project bookManiacs using Django Web Fr
 ----------------------------
 * Clone this repository to your local machine
 * In the **website** directory of the root folder create a file named `dbConfig`
-* Open `dbConfig` using any text editor and enter the full path of the file `booksManiacs.sqlite3` present in the database folder (refer to dbConfig.sample)
+* Open `dbConfig` using any text editor and enter the full path of the file `bookManiacs.sqlite3` present in the database folder (refer to dbConfig.sample)
  
 ###Starting Server
 ---------------------------- 
@@ -31,10 +31,10 @@ Source Code of the website built for our project bookManiacs using Django Web Fr
 ###Usage
 ----------------------------
 #####For Front End (html Pages)
-* Navigate to `website/booksManiacs/templates/booksManiacs`
+* Navigate to `website/bookManiacs/templates/bookManiacs`
 
 This directory has all the html pages . You can see the url of the page from 
-*website/booksManiacs/urls.py*
+*website/bookManiacs/urls.py*
 
 
 #####Database Changes
@@ -43,7 +43,7 @@ This directory has all the html pages . You can see the url of the page from
 
 
 #####Web Pages
-* The url of the homepage is [127.0.0.1:8000/booksManiacs](http://127.0.0.1:8000/booksManiacs)
+* The url of the homepage is [127.0.0.1:8000/bookManiacs](http://127.0.0.1:8000/bookManiacs)
 * Url's of other pages can be obtained from the `urls.py` mentioned above
 
 
