@@ -17,6 +17,11 @@
 					{{ errorString|safe }}
 				</div>
 			{% endif %}
+			{% if messageString %}
+				<div class = "alert col-md-offset-4 col-md-5">
+					{{ messageString|safe }}
+				</div>
+			{% endif %}
 			<form action="/booksManiacs/login/" method="POST" class = "form-horizontal">
 				{% csrf_token %}
 				<div class="form-group">

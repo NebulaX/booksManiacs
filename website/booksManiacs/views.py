@@ -98,13 +98,13 @@ def signup(request):
 				if response.is_valid:
 					p = Profile.objects.create(name = name, email = email, password = password, mobile_number = phone, room_number = room, hostel = bhawan)
 
-					messageString = "you have registered successfully"
+					messageString = 'you have registered successfully'
 					return render(request, 'booksManiacs/login.html', {'messageString': messageString})
 				else:
 					errorString = 'please fill the captcha correctly'
 					return render(request, 'booksManiacs/signup.html', {'errorString': errorString})
 			else:
-				errorString = "your password did not match with the confirm password"
+				errorString = 'your password did not match with the confirm password'
 				return render(request, 'booksManiacs/signup.html', {'errorString': errorString})
 		else:
 			return render(request, 'booksManiacs/signup.html')
