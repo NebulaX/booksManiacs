@@ -28,7 +28,7 @@ class Hostel(models.Model):
 		('jwb' , 'Jawahar Bhawan'),
 		('kab' , 'Kasturba Bhawan'),
 		('srb' , 'Sarojini Bhawan'),
-		('azb' , 'Azad Bhawan')		
+		('azb' , 'Azad Bhawan')
 		# add all bhawans
 	)
 
@@ -47,14 +47,13 @@ class Profile(models.Model):
 	email = models.EmailField(max_length=254,primary_key=True)
 	password = models.CharField(max_length=32)
 	mobile_number = models.CharField(max_length=10)
-	room_number = models.CharField(max_length=10,blank=True)
-	hostel = models.CharField(max_length=3,choices=Hostel.HOSTEL_CHOICES,blank=True)
-	year = models.CharField(max_length=3,choices=Student_Year.YEAR_CHOICES,blank=True)
-	enrollment_number = models.CharField(max_length=8,blank=True)
-	synced_facebook = models.BooleanField(default=False)
+	room_number = models.CharField(max_length=10,blank=True,null=True)
+	hostel = models.CharField(max_length=3,choices=Hostel.HOSTEL_CHOICES,blank=True,null=True)
+	mobile_verified = models.BooleanField(default=False)
+	email_verified = models.BooleanField(default=False)
 	blocked = models.BooleanField(default=False)
 	def __unicode__(self):
-		return self.email
+		return self.name + " " + self.email + " " + self.mobile_number
 
 class Item(models.Model):
 	ITEM_STATUS = (
@@ -67,6 +66,6 @@ class Item(models.Model):
 	seller = models.ForeignKey(Profile)
 	buy_request = models.CharField(max_length=1,choices=ITEM_STATUS,default='0')
 	buyer = models.ForeignKey(Profile,related_name='+',blank=True, null=True)
-	other_details = models.TextField(default='')
+	other_details = models.TextField(default='', null=True, blank=True)
 	def __unicode__(self):
 		return str(self.id) + " " + self.name_id + " status:" + self.buy_request
