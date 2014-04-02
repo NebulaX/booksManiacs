@@ -86,8 +86,8 @@ def signup(request):
 			confirmPass = request.POST['confPass']
 			bhawan      = request.POST['bhawan']
 			room        = request.POST['room']
-			enrNo       = request.POST['enrNo']
-			year        = request.POST['year']
+			# enrNo       = request.POST['enrNo']
+			# year        = request.POST['year']
 			# if makeValidation():
 			if password == confirmPass:
 				response = captcha.submit(
@@ -96,7 +96,7 @@ def signup(request):
 					'6Le7XvASAAAAAKk5cQcHOwxBRNjKBl49I_yRw2ym',
 					request.META['REMOTE_ADDR'],)
 				if response.is_valid:
-					p = Profile.objects.create(name = name, email = email, password = password, mobile_number = phone, room_number = room, hostel = bhawan, year = year, enrollment_number = enrNo)
+					p = Profile.objects.create(name = name, email = email, password = password, mobile_number = phone, room_number = room, hostel = bhawan)
 
 					messageString = "you have registered successfully"
 					return render(request, 'booksManiacs/login.html', {'messageString': messageString})
