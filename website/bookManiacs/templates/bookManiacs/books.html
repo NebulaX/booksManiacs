@@ -3,11 +3,11 @@
 	{% load staticfiles %}
 
 	{% block title %}
-		Books | booksManiacs
+		Books | bookManiacs
 	{% endblock %}
 
 	{% block staticFiles %}
-		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/books.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'bookManiacs/css/books.css' %}" />
 	{% endblock %}
 
 	{% block container %}
@@ -15,7 +15,7 @@
 			{% if books_available %}
 				{% for book in books_available %}
 					{% if book.avail_count %}
-					<a href="/booksManiacs/items/{{ book.author }}" >
+					<a href="/bookManiacs/items/{{ book.author }}" >
 						<div class = "panel panel-primary">
 							<div class = "panel-heading">
 								<div class = "panel-title">{{ book.name }}
@@ -23,7 +23,7 @@
 									<div><i class="fa fa-inr"></i> {{ book.price }}</div>
 								</div>
 								<div class = "panel-body">
-									<img src="{% static 'booksManiacs/images/book.png' %}">
+									<img src="{% static 'bookManiacs/images/book.png' %}">
 								</div>
 							</div>
 						</div>
@@ -40,12 +40,12 @@
 		{% else %}
 			<div id = "cover">
 				<div id = "brandcover">
-					<div id = "brandtitle"><i class ="fa fa-book"></i> booksManiacs</div>
+					<div id = "brandtitle"><i class ="fa fa-book"></i> bookManiacs</div>
 					<hr>
 					<p><i class="fa fa-inr"></i> Cheap books ! <i class = "fa fa-star-o"></i> Great Deals !</p>
 				</div>
 				<div id = "signinform">
-				<form action="/booksManiacs/login/" method="POST" class = "form-horizontal">
+				<form action="/bookManiacs/login/" method="POST" class = "form-horizontal">
 					{% csrf_token %}
 					<div class="form-group">
 					<div class="input-group">
@@ -65,7 +65,7 @@
 						<button type = "submit" class="form-control btn btn-primary"><i class = "fa fa-sign-in"></i> Sign In</button>
 					</div>
 					<div class="form-group">
-						<a href = "/booksManiacs/signup" class="form-control btn btn-success">
+						<a href = "/bookManiacs/signup" class="form-control btn btn-success">
 							<i class = "fa fa-share-square-o"></i> Sign Up
 						</a>
 					</div>

@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from booksManiacs import views
+from bookManiacs import views
 
 # handler404 = 'django.views.defaults.page_not_found'
 
