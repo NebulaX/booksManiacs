@@ -3,4 +3,6 @@
 *.pyc
 local_settings.py
 dbConfig
+<<<<<<< HEAD
 booksManiacs.sqlite3?
+bookManiacs.sqlite3

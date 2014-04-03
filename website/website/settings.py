@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/home/akki/booksManiacs/website/database/booksManiacs.sqlite3',                      # Or path to database file if using sqlite3.
+        'NAME': '/home/akki/booksManiacs/website/database/bookManiacs.sqlite3',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -141,7 +141,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'booksManiacs',
+    'bookManiacs',
 )
 
 # A sample logging configuration. The only tangible logging

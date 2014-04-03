@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>{% block title %}booksManiacs{% endblock %}</title>
+		<title>{% block title %}bookManiacs{% endblock %}</title>
 
 		{% load staticfiles %}
 
-		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/bootstrap.min.css' %}" />
-		<link rel="stylesheet" type="text/css" href="{% static 'booksManiacs/css/application.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'bookManiacs/css/bootstrap.min.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'bookManiacs/css/application.css' %}" />
 		<!-- <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"> -->
-		<link rel="stylesheet" href="{% static 'booksManiacs/font-awesome/css/font-awesome.min.css' %}">
+		<link rel="stylesheet" href="{% static 'bookManiacs/font-awesome/css/font-awesome.min.css' %}">
 
-		<script type="text/javascript" src="{% static 'booksManiacs/js/jquery-1.10.2.min.js' %}"></script>
-		<script type="text/javascript" src="{% static 'booksManiacs/js/bootstrap.min.js' %}"></script>
-		<script type="text/javascript" src="{% static 'booksManiacs/js/masonry.js' %}"></script>
-		<script type="text/javascript" src="{% static 'booksManiacs/js/application.js' %}"></script>
-		<script type="text/javascript" src="{% static 'booksManiacs/js/jquery-1.9.1.js' %}"></script>
-		<script type="text/javascript" src="{% static 'booksManiacs/js/jquery-ui-1.10.4.js' %}"></script>
+		<script type="text/javascript" src="{% static 'bookManiacs/js/jquery-1.10.2.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'bookManiacs/js/bootstrap.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'bookManiacs/js/masonry.js' %}"></script>
+		<script type="text/javascript" src="{% static 'bookManiacs/js/application.js' %}"></script>
+		<script type="text/javascript" src="{% static 'bookManiacs/js/jquery-1.9.1.js' %}"></script>
+		<script type="text/javascript" src="{% static 'bookManiacs/js/jquery-ui-1.10.4.js' %}"></script>
 
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 
@@ -29,14 +29,14 @@
 			<div id = "headerContent">
 				<!-- The three nav buttons -->
 				<div id = "navData" class = "btn-group">
-					<a href = "/booksManiacs/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Home">
+					<a href = "/bookManiacs/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Home">
 						<i class = "fa fa-home fa-2x"></i>
 					</a>
 					{% if request.session.user %}
-						<a href="/booksManiacs/profile/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Profile">
+						<a href="/bookManiacs/profile/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Profile">
 							<i class = "fa fa-user fa-2x"></i>
 						</a>
-						<a href="/booksManiacs/sell/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Sell">
+						<a href="/bookManiacs/sell/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Sell">
 							<i class = "fa fa-shopping-cart fa-2x"></i>
 						</a>
 					{% endif %}
@@ -50,18 +50,18 @@
 				{% if request.session.user %}
 					<div class = "btn-group">
 						<!-- Set URL for User Profile here @akshesh-->
-						<a href = "/booksManiacs/profile/" class = "btn btn-info">
+						<a href = "/bookManiacs/profile/" class = "btn btn-info">
 							<i class = "fa fa-user"></i> {{ request.session.name }}
 						</a>
 
-						<a href="/booksManiacs/logout/" class = "btn btn-danger">
+						<a href="/bookManiacs/logout/" class = "btn btn-danger">
 							<i class = "fa fa-sign-out"></i> Sign Out
 						</a>
 					</div>
 
 				{% else %}
 
-					<form action="/booksManiacs/login/" method="POST" class = "form-inline">
+					<form action="/bookManiacs/login/" method="POST" class = "form-inline">
 						{% csrf_token %}
 						<div class = "form-group">
 							<input name = "user" type = "text" class = "form-control" placeholder = "Email" required>
@@ -70,8 +70,8 @@
 							<input name = "password" type = "password" class = "form-control" placeholder = "Password" required>
 						</div>
 						<div class = "btn-group">
-							<button type = "submit" class="btn btn-primary"><i class = "fa fa-sign-in"></i> Sign In</button>
-							<a href = "/booksManiacs/signup" class="btn btn-success">
+						    <button type = "submit" class="btn btn-primary"><i class = "fa fa-sign-in"></i> Sign In</button>
+							<a href = "/bookManiacs/signup" class="btn btn-success">
 								<i class = "fa fa-share-square-o"></i> Sign Up
 							</a>
 						</div>
@@ -99,7 +99,7 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        <h4 class="modal-title" id="myModalLabel"><i class = "fa fa-book"></i> booksManiacs</h4>
+		        <h4 class="modal-title" id="myModalLabel"><i class = "fa fa-book"></i> bookManiacs</h4>
 		      </div>
 		      <div class="modal-body">
 		        Lorem ipsum

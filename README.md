@@ -1,4 +1,4 @@
-booksManiacs
+bookManiacs
 ============
 Instructions:
 ----------------------------
@@ -16,7 +16,7 @@ Any changes made to this directory should be tested live and then pushed from py
     **Password**: *N3bulaX*
 
 * Go to [pythonanywhere.com/user/akki/consoles/](https://www.pythonanywhere.com/user/akki/consoles/).
-* Create a bash console if not already present and run 
+* Create a bash console if not already present and run
 
   `source virtualenvwrapper.sh`
 
