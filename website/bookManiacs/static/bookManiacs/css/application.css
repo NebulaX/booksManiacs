@@ -1,11 +1,32 @@
 /*Custom CSS*/
 
+@font-face {
+  font-family: 'Lane Narrow';
+  src: url('../fonts/LANENAR_.ttf') format('truetype');
+}
+
+*::selection {
+	background: rgb(22, 177, 115);
+}
+
+*::-moz-selection {
+	background: rgb(22, 177, 115);
+}
+
+* {
+	font-family: 'Lane Narrow';
+}
+
+body {
+	background-image: url("/static/bookManiacs/images/bg.jpg");
+	background-attachment: fixed;
+}
+
 #header {
 	position: fixed;
 	top: 0pt;
 	height: 60pt;
 	width: 100%;
-	/*background-image: url("images/bg.jpg");*/
 	background-color: white;
 	z-index: 2;
 	box-shadow: 0px 0px 20px black;
@@ -33,11 +54,6 @@
 	height: 4pt;
 	background-color: rgb(22, 177, 115);
 	box-shadow: 0px 0px 10px black;
-}
-
-body {
- 	background-image: url("/static/bookManiacs/images/bg.jpg");
- 	background-attachment: fixed;
 }
 
 #forms {
@@ -88,72 +104,54 @@ body {
 	text-shadow: 0px 0px 10px;
 }
 
-#brand {
-	position: absolute;
-	left: 238pt;
-	top: -5pt;
-	color: rgba(22, 177, 115, 0);
-	font-size: 40pt;
-	text-shadow: 0px 0px 6px rgb(0,0,0);
-	z-index: -2;
+.btn {
+	font-family: 'Open Sans';
 }
 
-#adminControls {
-	position: fixed;
-	top: 11pt;
-	left: 485pt;
-}
-
-*::selection {
-	background: rgb(22, 177, 115);
-}
-
-*::-moz-selection {
-	background: rgb(22, 177, 115);
-}
+/*Notifications CSS*/
 
 .backStripes {
 	-webkit-background-size: 40px 40px;
-    -moz-background-size: 40px 40px;
-    background-size: 40px 40px;
-     background-image: -webkit-gradient(linear, left top, right bottom,
-                color-stop(.25, rgba(255, 255, 255, .05)), color-stop(.25, transparent),
-                color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .05)),
-                color-stop(.75, rgba(255, 255, 255, .05)), color-stop(.75, transparent),
-                         to(transparent));
-     background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
-                         transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
-                         transparent 75%, transparent);
-     background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
-                         transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
-                         transparent 75%, transparent);
-     background-image: -ms-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
-                          transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
-                          transparent 75%, transparent);
-     background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
-                          transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
-                           transparent 75%, transparent);
-     background-image: linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
-                           transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
-                            transparent 75%, transparent);
+	-moz-background-size: 40px 40px;
+	background-size: 40px 40px;
+	background-image: -webkit-gradient(linear, left top, right bottom,
+				color-stop(.25, rgba(255, 255, 255, .05)), color-stop(.25, transparent),
+				color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .05)),
+				color-stop(.75, rgba(255, 255, 255, .05)), color-stop(.75, transparent),
+						 to(transparent));
+	background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+						 transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+						 transparent 75%, transparent);
+	background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+						 transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+						 transparent 75%, transparent);
+	background-image: -ms-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+						  transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+						  transparent 75%, transparent);
+	background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+						  transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+						   transparent 75%, transparent);
+	background-image: linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+						   transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+							transparent 75%, transparent);
 }
 
 .alert {
-    -moz-box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
-    -webkit-box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
-    box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
-    border: 3px solid;
-    color: #fff;
-    padding: 15px;
-    font-size: 18px;
-    -webkit-animation: animate-bg 5s linear infinite;
-    -moz-animation: animate-bg 5s linear infinite;
-    
-    background-color: #de4343;
-    border-color: #c43d3d;
+	-moz-box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
+	-webkit-box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
+	box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
+	border: 3px solid;
+	color: #fff;
+	padding: 15px;
+	font-size: 18px;
+	-webkit-animation: animate-bg 5s linear infinite;
+	-moz-animation: animate-bg 5s linear infinite;
+	
+	background-color: #de4343;
+	border-color: #c43d3d;
 
-    position: relative;
-    right: 20px;
+	position: relative;
+	right: 20px;
 }
 
 .alert a {
