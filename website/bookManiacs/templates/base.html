@@ -49,14 +49,17 @@
 				<div id = "forms">
 				{% if request.session.user %}
 					<div class = "btn-group">
-						<!-- Set URL for User Profile here @akshesh-->
-						<a href = "/bookManiacs/profile/" class = "btn btn-info">
-							<i class = "fa fa-user"></i> {{ request.session.name }}
-						</a>
-
-						<a href="/bookManiacs/logout/" class = "btn btn-danger">
-							<i class = "fa fa-sign-out"></i> Sign Out
-						</a>
+						<div class="btn-group">
+						  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						    {{ request.session.name }} <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" role="menu">
+						    <li><a href="/bookManiacs/profile/"><i class = "fa fa-user"></i> Profile</a></li>
+						    <li><a href="/bookManiacs/password/"><i class = "fa fa-key"></i> Change Password</a></li>
+						    <li class="divider"></li>
+						    <li><a href="/bookManiacs/logout/"><i class = "fa fa-sign-out"></i> Sign Out</a></li>
+						  </ul>
+						</div>
 					</div>
 
 				{% else %}
