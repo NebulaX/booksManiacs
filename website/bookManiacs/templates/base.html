@@ -9,12 +9,16 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'bookManiacs/css/bootstrap.min.css' %}" />
 		<link rel="stylesheet" type="text/css" href="{% static 'bookManiacs/css/application.css' %}" />
 		<link rel="stylesheet" href="{% static 'bookManiacs/font-awesome/css/font-awesome.min.css' %}">
+		<link rel="stylesheet" href="{% static 'bookManiacs/css/grumble.min.css' %}">
+		<link rel="stylesheet" href="{% static 'bookManiacs/css/crumble.css' %}">
 
 		<script type="text/javascript" src="{% static 'bookManiacs/js/jquery-1.10.2.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'bookManiacs/js/bootstrap.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'bookManiacs/js/masonry.js' %}"></script>
 		<script type="text/javascript" src="{% static 'bookManiacs/js/application.js' %}"></script>
 		<script type="text/javascript" src="{% static 'bookManiacs/js/jquery-ui-1.10.4.js' %}"></script>
+		<script type="text/javascript" src="{% static 'bookManiacs/js/jquery.grumble.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'bookManiacs/js/jquery.crumble.min.js' %}"></script>
 
 		{% block staticFiles %}
 		{% endblock %}
@@ -61,13 +65,13 @@
 					<div class = "btn-group">
 						<div class="btn-group">
 						  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" id = "user-btn">
-						    {{ request.session.name }} <span class="caret"></span>
+							{{ request.session.name }} <span class="caret"></span>
 						  </button>
 						  <ul class="dropdown-menu" role="menu">
-						    <li><a href="/bookManiacs/profile/"><i class = "fa fa-user"></i> Profile</a></li>
-						    <li><a href="/bookManiacs/password/"><i class = "fa fa-key"></i> Change Password</a></li>
-						    <li class="divider"></li>
-						    <li><a href="/bookManiacs/logout/"><i class = "fa fa-sign-out"></i> Sign Out</a></li>
+							<li><a href="/bookManiacs/profile/"><i class = "fa fa-user"></i> Profile</a></li>
+							<li><a href="/bookManiacs/password/"><i class = "fa fa-key"></i> Change Password</a></li>
+							<li class="divider"></li>
+							<li><a href="/bookManiacs/logout/"><i class = "fa fa-sign-out"></i> Sign Out</a></li>
 						  </ul>
 						</div>
 					</div>
@@ -124,6 +128,30 @@
 				</span>
 			</div>
 		</div>
+
+		<!-- Tour -->
+
+		<ol id="tour" style="display: none;">
+			<li data-target="body" data-angle="130">
+				Lets show you around. Click me for next.
+			</li>
+			<li data-target="#navData .fa-home" data-angle="150">
+				This is the book store.
+			</li>
+			<li data-target="#content" data-angle="180">
+				Find the books here.
+			</li>
+			<li data-target="#navData .fa-user" data-angle="130">
+				Your requests are here.
+			</li>
+			<li data-target="#navData .fa-user" data-angle="130">
+				Sell your books here.
+			</li>
+			<li data-target="#about-control" data-angle="-20">
+				Follow us for any help.
+			</li>
+		</ol>
+
 	</body>
 	{% block endStaticFiles %}
 	{% endblock %}
