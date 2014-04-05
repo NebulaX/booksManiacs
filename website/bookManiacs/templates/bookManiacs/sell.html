@@ -6,10 +6,23 @@
 		Add a book | bookManiacs
 	{% endblock %}
 
+	{% block nav %}
+		<a href = "/bookManiacs/" class = "btn btn-success btn-lg">
+			<i class = "fa fa-home"></i>
+			<div class = "nav-small-text">Home</div>
+		</a>
+		<a href="/bookManiacs/profile/" class = "btn btn-success btn-lg">
+			<i class = "fa fa-user"></i>
+			<div class = "nav-small-text">Profile</div>
+		</a>
+		<a href="/bookManiacs/sell/" class = "btn btn-success btn-lg active">
+			<i class = "fa fa-shopping-cart"></i>
+			<div class = "nav-small-text">Sell</div>
+		</a>
+	{% endblock %}
 
 	{% block container %}
 	<h1 class="form-title">Add a book</h1>
-	<hr>
 
 	{% if errorString %}
 		<div class = "alert col-md-offset-4 col-md-5">

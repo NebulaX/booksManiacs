@@ -17,7 +17,7 @@
 		<script type="text/javascript" src="{% static 'bookManiacs/js/jquery-1.9.1.js' %}"></script>
 		<script type="text/javascript" src="{% static 'bookManiacs/js/jquery-ui-1.10.4.js' %}"></script>
 
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+		<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"> -->
 
 		{% block staticFiles %}
 		{% endblock %}
@@ -25,24 +25,38 @@
 	</head>
 	<body>
 		<div id = "header">
-			<div id = "line"></div>
 			<div id = "headerContent">
 				<!-- The three nav buttons -->
 				<div id = "navData" class = "btn-group">
-					<a href = "/bookManiacs/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Home">
-						<i class = "fa fa-home fa-2x"></i>
-					</a>
 					{% if request.session.user %}
-						<a href="/bookManiacs/profile/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Profile">
-							<i class = "fa fa-user fa-2x"></i>
+						{% block nav %}
+							<a href = "/bookManiacs/" class = "btn btn-success btn-lg active">
+								<i class = "fa fa-home"></i>
+								<div class = "nav-small-text">Home</div>
+							</a>
+							<a href="/bookManiacs/profile/" class = "btn btn-success btn-lg">
+								<i class = "fa fa-user"></i>
+								<div class = "nav-small-text">Profile</div>
+							</a>
+							<a href="/bookManiacs/sell/" class = "btn btn-success btn-lg">
+								<i class = "fa fa-shopping-cart"></i>
+								<div class = "nav-small-text">Sell</div>
+							</a>
+						{% endblock %}
+					{% else %}
+						<a href = "/bookManiacs/" class = "btn btn-success btn-lg active">
+							<i class = "fa fa-home"></i>
+							<div class = "nav-small-text">Home</div>
 						</a>
-						<a href="/bookManiacs/sell/" class = "btn btn-success btn-lg" data-toggle="tooltip" data-placement="bottom" title = "Sell">
-							<i class = "fa fa-shopping-cart fa-2x"></i>
+						<a href="/bookManiacs/profile/" class = "btn btn-success btn-lg disabled">
+							<i class = "fa fa-user"></i>
+							<div class = "nav-small-text">Profile</div>
+						</a>
+						<a href="/bookManiacs/sell/" class = "btn btn-success btn-lg disabled">
+							<i class = "fa fa-shopping-cart"></i>
+							<div class = "nav-small-text">Sell</div>
 						</a>
 					{% endif %}
-					<button class = "btn btn-success btn-lg" data-toggle="modal" data-target = "#myModal">
-						<i class = "fa fa-info-circle fa-2x"></i>
-					</button>
 				</div>
 
 				<!-- Signin form -->
@@ -50,7 +64,7 @@
 				{% if request.session.user %}
 					<div class = "btn-group">
 						<div class="btn-group">
-						  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" id = "user-btn">
 						    {{ request.session.name }} <span class="caret"></span>
 						  </button>
 						  <ul class="dropdown-menu" role="menu">
@@ -90,28 +104,29 @@
 			{% endblock %}
 		</div>
 
-		<div id = "follow">
-			<a href = "http://fb.com/" target="_blank"><i class = "fa fa-facebook fa-lg"></i></a> <a href = "http://www.twitter.com" target = "_blank"><i class = "fa fa-twitter fa-lg"></i></a> <a href= "mailto:admin@gmail.com"><i class = "fa fa-envelope fa-lg"></i></a>
-		</div>
-		<div id = "footer">
-		</div>
-
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        <h4 class="modal-title" id="myModalLabel"><i class = "fa fa-book"></i> bookManiacs</h4>
-		      </div>
-		      <div class="modal-body">
-		        Lorem ipsum
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-		      </div>
-		    </div>
-		  </div>
+		<div id = "about" class = "row">
+			<div id = "about-control"><i class = "fa fa-angle-double-up"></i> bookManiacs</div>
+			<div id = "about-text" class = "col-md-offset-1 col-md-6">
+				<div id = "about-title">bookManiacs</div>
+				<blockquote id = "about-about">
+					Buy Cheap books | Sell with good profit
+					<div>
+						bookManiacs is a place where you will find books<br>
+						at lower price tags than market and sell at higher price.
+					</div>
+				</blockquote>
+			</div>
+			<div id = "about-follow" class = "col-md-offset-1 col-md-4">
+				<span>
+					<i class = "fa fa-facebook"></i>
+				</span>
+				<span>
+					<i class = "fa fa-twitter"></i>
+				</span>
+				<span>
+					<i class = "fa fa-envelope"></i>
+				</span>
+			</div>
 		</div>
 	</body>
 	{% block endStaticFiles %}

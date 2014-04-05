@@ -18,23 +18,28 @@
 }
 
 body {
-	background-image: url("/static/bookManiacs/images/bg.jpg");
+	background-image: url("../images/bg.jpg");
 	background-attachment: fixed;
+	background-repeat: round;
 }
 
 #header {
 	position: fixed;
 	top: 0pt;
-	height: 60pt;
+	height: 75px;
 	width: 100%;
-	background-color: white;
 	z-index: 2;
-	box-shadow: 0px 0px 20px black;
+	background: white;
+	border-style: solid;
+	border-width: 0px;
+	border-top-width: 5px;
+	border-color: rgb(22, 177, 115);
+	box-shadow: 0px 0px 10px;
 }
 
 #header #line {
 	position: relative;
-	height: 4pt;
+	/* height: 4pt; */
 	width: 100%;
 	background-color: rgb(22, 177, 115);
 	box-shadow: 0px 0px 20px rgb(22, 177, 115);
@@ -57,8 +62,10 @@ body {
 }
 
 #forms {
-	float: right;
-	padding: 15pt;
+	position: fixed;
+	right: 25px;
+	vertical-align: middle;
+	top: 22px;
 }
 
 .form-inline {
@@ -69,26 +76,50 @@ body {
 	position: relative;
 }
 
+.btn {
+	font-family: 'Open Sans';
+	border-radius: 0px;
+	border-width: 0px;
+	border-bottom-width: 3px;
+	box-shadow: 0px 0px 6px inset;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
 #navData {
-	float: left;
-	padding: 6pt;
+	/* position: fixed; */
+	left: 14px;
+	/* top: 21px; */
+	/* box-shadow: 0px 0px 5px; */
+	height: 100%;
 }
 
-#follow {
-	padding: 8pt;
-	position: fixed;
-	bottom: 0pt;
-	right: 20pt;
-	height: auto;
-	border-top-right-radius: 5pt;
-	border-top-left-radius: 5pt;
-	background-color: rgba(255,255,255,0.72);
-	box-shadow: 0px 0px 20px black;
+#navData .btn {
+	border-radius: 0px;
+	border-style: solid;
+	border-width: 0px;
+	border-bottom-width: 4px;
+	border-color: rgba(0, 0, 0, 0);
+	background-color: white;
+	color: gray;
+	width: 67px;
+	box-shadow: none;
 }
 
-#follow i{
-	margin-right: 10pt;
-	margin-left: 10pt;
+#navData .btn:hover {
+	border-bottom-color: rgb(22, 177, 115);
+}
+
+#navData .active {
+	border-color: rgb(22, 177, 115);
+	background: rgb(22, 177, 115);
+	color: white;
+}
+
+.nav-small-text {
+	padding-top: 10px;
+	font-family: 'Open Sans';
+	font-size: 10px;
 }
 
 .form-depression {
@@ -98,14 +129,76 @@ body {
 
 .form-title {
 	text-align: center;
-	margin-top: 20pt;
-	margin-left: 30pt;
-	font-size: 50pt;
-	text-shadow: 0px 0px 10px;
+	margin-top: 20px;
+	margin-left: 30px;
+	font-size: 60px;
 }
 
-.btn {
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Lane Narrow';
+}
+
+
+/*Footer divs*/
+
+#about {
+	position: fixed;
+	bottom: -294px;
+	left: 0px;
+	right: 0px;
+	background: rgb(22, 177, 115);
+	height: 300px;
+	color: white;
+	z-index: 2;
+	padding: 30px;
+	box-shadow: 0px 0px 10px black;
+}
+
+#about-control {
+	position: absolute;
+	font-size: 50px;
+	margin-top: -64px;
+	padding: 4px;
+	width: 231px;
+	text-align: center;
+	right: 40px;
+	background: rgb(22, 177, 115);
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	font-size: 19px;
+	cursor: pointer;
+	color: white;
+	/* font-family: 'Open Sans'; */
+	z-index: -2;
+	/* font-weight: bold; */
+	box-shadow: -1px 0px 10px rgb(22, 177, 115);
+}
+
+#about-title {
+	font-size: 60px;
+}
+
+#about-about {
 	font-family: 'Open Sans';
+	font-size: 20px;
+}
+
+#about-follow {
+	margin-top: 80px;
+}
+
+#about-follow span {
+	cursor: pointer;
+	border-style: solid;
+	border-width: 0px;
+	border-bottom-width: 5px;
+	border-color: rgb(22, 177, 115);
+	padding: 30px;
+	font-size: 40px;
+}
+
+#about-follow span:hover {
+	border-color: white;
 }
 
 /*Notifications CSS*/
@@ -137,19 +230,11 @@ body {
 }
 
 .alert {
-	-moz-box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
-	-webkit-box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
-	box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
-	border: 3px solid;
 	color: #fff;
 	padding: 15px;
 	font-size: 18px;
-	-webkit-animation: animate-bg 5s linear infinite;
-	-moz-animation: animate-bg 5s linear infinite;
 	
 	background-color: #de4343;
-	border-color: #c43d3d;
-
 	position: relative;
 	right: 20px;
 }

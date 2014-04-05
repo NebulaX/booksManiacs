@@ -2,7 +2,7 @@
 	padding: 0px;
 	background: white;
 	border-radius: 2px;
-	box-shadow: 0px 0px 10px;
+	/*box-shadow: 0px 0px 10px;*/
 }
 
 .sellBuyWrap ul {
@@ -27,11 +27,9 @@
 	border-style: solid;
 	border-width: 0px;
 	border-top-width: 6px;
-	border-color: rgb(15, 173, 34);
-	margin-top: 20pt;
-	margin-left: 30pt;
+	border-color:  rgb(22, 177, 115);
+	padding-top: 20px;
 	font-size: 30pt;
-	text-shadow: 0px 0px 10px;
 }
 
 #sellTitle {
