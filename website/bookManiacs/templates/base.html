@@ -14,10 +14,7 @@
 		<script type="text/javascript" src="{% static 'bookManiacs/js/bootstrap.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'bookManiacs/js/masonry.js' %}"></script>
 		<script type="text/javascript" src="{% static 'bookManiacs/js/application.js' %}"></script>
-		<script type="text/javascript" src="{% static 'bookManiacs/js/jquery-1.9.1.js' %}"></script>
 		<script type="text/javascript" src="{% static 'bookManiacs/js/jquery-ui-1.10.4.js' %}"></script>
-
-		<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"> -->
 
 		{% block staticFiles %}
 		{% endblock %}
@@ -26,7 +23,6 @@
 	<body>
 		<div id = "header">
 			<div id = "headerContent">
-				<!-- The three nav buttons -->
 				<div id = "navData" class = "btn-group">
 					{% if request.session.user %}
 						{% block nav %}
