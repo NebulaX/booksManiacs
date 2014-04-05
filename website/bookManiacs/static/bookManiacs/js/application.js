@@ -46,7 +46,7 @@ $(document).ready(function (){
 });
 
 function aboutSlideDown(){
-	$("#about").animate({bottom: "-294px"}, 500);
+	$("#about").animate({bottom: "-236px"}, 500);
 }
 
 function aboutSlideUp() {

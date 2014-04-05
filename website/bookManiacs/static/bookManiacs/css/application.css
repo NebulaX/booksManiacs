@@ -143,21 +143,21 @@ h1, h2, h3, h4, h5, h6 {
 
 #about {
 	position: fixed;
-	bottom: -294px;
+	bottom: -236px;
 	left: 0px;
 	right: 0px;
 	background: rgb(22, 177, 115);
-	height: 300px;
+	height: 241px;
 	color: white;
 	z-index: 2;
-	padding: 30px;
+	padding: 14px;
 	box-shadow: 0px 0px 10px black;
 }
 
 #about-control {
 	position: absolute;
 	font-size: 50px;
-	margin-top: -64px;
+	margin-top: -47px;
 	padding: 4px;
 	width: 231px;
 	text-align: center;
