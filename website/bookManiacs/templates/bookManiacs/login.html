@@ -22,7 +22,11 @@
 					{{ messageString|safe }}
 				</div>
 			{% endif %}
-			<form action="/bookManiacs/login/" method="POST" class = "form-horizontal">
+			{% if request.GET.next %}
+				<form action="{{ request.get_full_path }}" method="POST" class = "form-horizontal">
+			{% else %}
+				<form action="/bookManiacs/login/" method="POST" class = "form-horizontal">
+			{% endif %}
 				{% csrf_token %}
 				<div class="form-group">
 				<label class="col-lg-5 control-label">Email</label>

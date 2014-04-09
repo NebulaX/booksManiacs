@@ -56,6 +56,9 @@ def login(request):
 				if loginPassword == userPassword:
 					request.session['user'] = userEmail
 					request.session['name'] = userName
+					if 'next' in request.GET:
+						next = request.GET['next']
+						return HttpResponseRedirect(next)
 					return HttpResponseRedirect("/bookManiacs/")
 				else:
 					data = {'errorString': 'your username and password didnt match'}
