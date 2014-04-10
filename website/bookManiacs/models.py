@@ -38,7 +38,7 @@ class Book(models.Model):
 	author = models.CharField(max_length=40,primary_key=True)
 	avail_count = models.IntegerField(default=0)
 	price = models.IntegerField()
-	imageLink = models.CharField(max_length=500,blank=True)
+	# query = str(name) + " (" + str(author) + ")"
 	def __unicode__(self):
 		return self.name + " (" + self.author + ")"
 

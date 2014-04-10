@@ -20,6 +20,12 @@
 				<img src="{% static 'bookManiacs/images/book.png' %}" class="bookImage">
 			</div>
 			<div class="col-md-4 itemDetails">
+				{% if messageString %}
+					{{ messageString }}
+				{% endif %}
+				{% if errorString %}
+					{{ errorString }}
+				{% endif %}
 				{% if req_items %}
 					<ul>
 					{% for item in req_items %}
@@ -35,7 +41,7 @@
 					</ul>
 				{% else %}
 					<div id="backStripes bookError">Sorry...We dont have this book in stock right now.Please try later.</div>
-				{% endif %}
+				{% endif %}				
 				{% if own_items %}
 					<div id="backStripes bookUserDetails">Other than these you have added {{ own_items }} book(s).</div>
 				{% endif %}

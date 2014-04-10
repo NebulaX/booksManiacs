@@ -15,6 +15,12 @@
 			<a href="/bookManiacs/password/" class="btn btn-sm btn-warning"><i class = "fa fa-key"></i> Change Password</a>
 		</div>
 		<hr>
+		{% if messageString %}
+			{{ messageString }}
+		{% endif %}
+		{% if errorString %}
+			<div class = "alert col-md-offset-4 col-md-5">{{ errorString }}</div>
+		{% endif %}
 
 		<div class="row">
 			<div id = "toSell" class="col-md-4 col-md-offset-1 sellBuyWrap">
