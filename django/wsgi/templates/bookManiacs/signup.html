@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+	
+	{% block title %}
+		Sign Up | bookManiacs
+	{% endblock %}
+
+	{% block container %}
+	<h1 class="form-title">Sign Up</h1>
+	<hr>
+	<div class = "form-depression">
+		<form action="/bookManiacs/signup/" id="signup" method="POST" class = "form-horizontal">
+			{% if errorString %}
+				<div class="col-md-offset-4 col-md-5">
+					{{ errorString }}
+				</div>
+			{% endif %}
+			{% csrf_token %}
+
+			<div class="form-group">
+			<label class="col-lg-5 control-label">Name*</label>
+			<div class="col-lg-3">
+				<input type="input" name="name" id="name" class = "form-control">
+			</div>
+			</div>
+
+			<div class="form-group">
+			<label class="col-lg-5 control-label">Email*</label>
+			<div class="col-lg-3">
+			<div class="input-group">
+				<div class="input-group-addon"><i class = "fa fa-user"></i></div>
+				<input type="email" name="email" id="email" class = "form-control">
+			</div>
+			</div>
+			</div>
+
+			<div class="form-group">
+			<label class="col-lg-5 control-label">Phone*</label>
+			<div class="col-lg-3">
+			<div class="input-group">
+				<div class="input-group-addon">+91</div>
+				<input type="input" name="phone" id="phone" maxlength="10" class = "form-control">
+			</div>
+			</div>
+			</div>
+
+			<div class="form-group">
+			<label class="col-lg-5 control-label">Password*</label>
+			<div class="col-lg-3">
+			<div class="input-group">
+				<div class="input-group-addon"><i class="fa fa-key"></i></div>
+				<input type="password" name="pass" id="password" class = "form-control">
+			</div>
+			</div>
+			</div>
+
+			<div class="form-group">
+			<label class="col-lg-5 control-label">Confirm Password*</label>
+			<div class="col-lg-3">
+			<div class="input-group">
+				<div class="input-group-addon"><i class="fa fa-key"></i></div>
+				<input type="password" name="confPass" id="confirm_password" class = "form-control">
+			</div>
+			</div>
+			</div>
+
+			<div class="form-group">
+			<label class="col-lg-5 control-label">Bhawan</label>
+			<div class="col-lg-3">
+				<select name="bhawan" class = "form-control">
+					<option value="null"> --------  </option>
+					<option value="rkb">Radha Krishnan</option>
+					<option value="clb">Cautley</option>
+					<option value="rjb">Rajendra</option>
+					<option value="gnb">Ganga</option>
+				</select>
+			</div>
+			</div>
+
+			<div class="form-group">
+			<label class="col-lg-5 control-label">Room Number</label>
+			<div class="col-lg-3">
+				<input type="input" name="room" class = "form-control">
+			</div>
+			</div>
+
+			<div class = "form-group" id = "captcha">
+				<div class = "col-lg-offset-5 col-lg-3">
+					<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6Le7XvASAAAAAM4AdJMpfSZRgaoatdc23bJblwNY"></script>
+				    <noscript>
+				       <iframe src="http://www.google.com/recaptcha/api/noscript?k=6Le7XvASAAAAAM4AdJMpfSZRgaoatdc23bJblwNY" height="300" width="500" frameborder="0"></iframe><br>
+				       <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+				       </textarea>
+				       <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+				    </noscript>
+			    </div>
+		    </div>
+
+			<div class="form-group">
+			<label class="col-lg-5 control-label"></label>
+			<div class="col-lg-3">
+				<input type="submit" class="form-control btn btn-success" value = "Sign Up">
+			</div>
+			</div>
+
+		</form>
+	</div>
+	{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+	{% load staticfiles %}
+
+	{% block title %}
+		Profile | bookManiacs
+	{% endblock %}
+
+	{% block staticFiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'bookManiacs/css/profile.css' %}" />
+	{% endblock %}
+
+	{% block container %}
+		<div id = "editProfile">
+			<a href="/bookManiacs/password/" class="btn btn-sm btn-warning"><i class = "fa fa-key"></i> Change Password</a>
+		</div>
+		<hr>
+		{% if messageString %}
+			{{ messageString }}
+		{% endif %}
+		{% if errorString %}
+			<div class = "alert col-md-offset-4 col-md-5">{{ errorString }}</div>
+		{% endif %}
+
+		<div class="row">
+			<div id = "toSell" class="col-md-4 col-md-offset-1 sellBuyWrap">
+				<div class = "sellBuyTitle" id = "sellTitle">
+					To Sell
+				</div>
+				<hr>
+				<div id = "toSellContent">
+					{% if sellerOf %}
+						<ul>
+						{% for item in sellerOf %}
+							<li class="backStripes buySellItem">
+								{{ item.name }}
+								<a href="/bookManiacs/removeBook/{{ item.id }}/" class="btn btn-danger btn-xs"><i class = "fa fa-minus-circle"></i> remove</a>
+							</li>
+						{% endfor %}
+						</ul>
+					{% else %}
+						<div class="backStripes buySellWarn">You have not added any book for sale !</div>
+					{% endif %}
+					<a href="/bookManiacs/sell/" class="btn btn-primary btn-xs" id = "addBook"><i class = "fa fa-plus"></i> add book</a>
+				</div>
+			</div>
+
+			<div id = "toBuy" class="col-md-4 col-md-offset-2 sellBuyWrap">
+				<div class = "sellBuyTitle" id = "buyTitle">
+					To Buy
+				</div>
+				<hr>
+				<div id = "toBuyContent">
+					{% if buyerOf %}
+						<ul>
+						{% for item in buyerOf %}
+							<li class="backStripes buySellItem">
+								{{ item.name }}
+								<a href="/bookManiacs/removeBuy/{{ item.id }}/" class="btn btn-danger btn-xs"><i class = "fa fa-minus-circle"></i> remove</a>
+							</li>
+						{% endfor %}
+						</ul>
+					{% else %}
+						<div class ="backStripes buySellWarn">You have not requested to buy any book !</div>
+						<a href="/bookManiacs/" class = "btn btn-primary btn-xs" id = "buyBook"><i class = "fa fa-shopping-cart"></i> buy a book</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+	{% endblock %}

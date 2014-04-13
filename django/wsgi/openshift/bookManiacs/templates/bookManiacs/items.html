@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+	
+	{% load staticfiles %}
+
+	{% block title %}
+		{{ book_author }} | bookManiacs
+	{% endblock %}
+
+	{% block staticFiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'bookManiacs/css/items.css' %}" />
+	{% endblock %}
+
+	{% block container %}
+
+		<h1 id = "bookName"><i class = "fa fa-book"></i> {{ book_author }}</h1>
+		<hr>
+
+		<div class="row">
+			<div class="col-md-3 col-md-offset-2">
+				<img src="{% static 'bookManiacs/images/book.png' %}" class="bookImage">
+			</div>
+			<div class="col-md-4 itemDetails">
+				{% if messageString %}
+					{{ messageString }}
+				{% endif %}
+				{% if errorString %}
+					{{ errorString }}
+				{% endif %}
+				{% if req_items %}
+					<ul>
+					{% for item in req_items %}
+						<li class="itemRow">{{ item.name }} - {{ item.edition }}<br />
+							{% if item.other_details != "" %}
+							Other details - {{ item.other_details }}
+							{% endif %}
+							{% if name %}
+								<a href="/buy/{{ item.id }}/"><i class="fa fa-shopping-cart"></i> Buy</a>
+							{% endif %}
+						</li>
+					{% endfor %}
+					</ul>
+				{% else %}
+					<div id="backStripes bookError">Sorry...We dont have this book in stock right now.Please try later.</div>
+				{% endif %}				
+				{% if own_items %}
+					<div id="backStripes bookUserDetails">Other than these you have added {{ own_items }} book(s).</div>
+				{% endif %}
+			</div>
+		</div>
+	{% endblock %}
